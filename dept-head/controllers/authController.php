@@ -9,8 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['loginPassInput']);
 
     if (isset($conn)) {
-        
-        $query = "SELECT id, name, password_hash, role FROM users WHERE email =" $email AND is_active = TRUE LIMIT 1";
+        $query = "SELECT id, name, password_hash, role FROM users WHERE email = ? AND is_active = TRUE LIMIT 1";
         $stmt = $conn->prepare($query);
         
         $stmt->bind_param("s", $email);
@@ -22,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $result->fetch_assoc();
 
             if (password_verify($password, $user['password_hash'])) {
+                
+                // Set session variables
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
                 $_SESSION['role'] = $user['role'];
@@ -38,3 +39,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
     }
 }
+
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    $_SESSION = array();
+
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+
+    session_destroy();
+
+    header("Location: ../index.php");
+    exit();
+}
+?>
