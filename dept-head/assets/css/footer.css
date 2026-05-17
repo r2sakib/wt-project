@@ -1,0 +1,51 @@
+.app-footer {
+    background-color: #1e293b;
+    border-top: 1px solid #334155;
+    padding: 2rem 3.2rem;
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+}
+
+.copyright {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 1.4rem;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1.4rem;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #3b82f6;
+}
+
+.separator {
+    color: #475569;
+}
+
+.version {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    background-color: #334155;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+}
