@@ -1,10 +1,7 @@
-/* ================= REPORTS SPECIFIC CSS ================= */
-
 .reports-container {
-    padding: 0; /* Relies on the global #main-content-container padding */
+    padding: 0;
 }
 
-/* Filter Bar Reused Styles (Only need layout spacing) */
 .filter-card {
     padding: 1.6rem 2.4rem;
     margin-bottom: 2.4rem;
@@ -56,7 +53,6 @@
     margin-left: auto;
 }
 
-/* Report Summary Grid */
 .report-summary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
@@ -91,7 +87,6 @@
     margin-top: 1.2rem;
 }
 
-/* CSS Data Bars for Table */
 .rate-text {
     font-size: 1.3rem;
     font-weight: 600;
@@ -102,9 +97,9 @@
 
 .progress-wrapper {
     width: 100%;
-    max-width: 15rem; /* Keeps the bar from getting too long on wide screens */
+    max-width: 15rem;
     height: 0.8rem;
-    background-color: var(--border-color); /* Light gray track */
+    background-color: var(--border-color);
     border-radius: 1rem;
     overflow: hidden;
 }
@@ -119,6 +114,5 @@
 .fill-warning { background-color: var(--warning); }
 .fill-danger { background-color: var(--danger); }
 
-/* Extra Utilities */
 .text-danger { color: var(--danger); }
 .row-attention { background-color: #fffbeb !important; }
