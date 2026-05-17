@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student: Vies</title>
+</head>
+
+<body>
+    <div class="students-container">
+
+        <div class="page-header">
+            <div class="header-info">
+                <h2>Student Profile</h2>
+            </div>
+            <div class="header-actions">
+                <button class="btn-outline" id="btn-back-students">
+                    <span class="icon">⬅️</span> Back to Directory
+                </button>
+            </div>
+        </div>
+
+        <div class="profile-layout">
+
+            <aside class="profile-sidebar form-card">
+                <div class="profile-header text-center">
+                    <img src="https://ui-avatars.com/api/?name=Alice+Johnson&background=e2e8f0&color=334155"
+                        alt="Profile" class="profile-img-lg">
+                    <h3>Alice Johnson</h3>
+                    <p class="text-muted">ID: 22-45678-1</p>
+                    <div class="badge-wrapper">
+                        <span class="badge badge-good">Good Standing</span>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <span class="stat-num">3.85</span>
+                        <span class="stat-label">CGPA</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">124</span>
+                        <span class="stat-label">Credits Earned</span>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <div class="profile-details">
+                    <p><strong>Programme:</strong> B.Sc. in Computer Science</p>
+                    <p><strong>Current Semester:</strong> 8th</p>
+                    <p><strong>Email:</strong> alice.j@student.edu</p>
+                    <p><strong>Phone:</strong> +880 1711-234567</p>
+                </div>
+            </aside>
+
+            <main class="profile-main">
+
+                <div class="widget-card mb-2">
+                    <div class="widget-header">
+                        <h3>Recent Academic History</h3>
+                        <span class="text-muted">Spring 2026 Semester</span>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Title</th>
+                                <th>Credits</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-medium">CSC4105</td>
+                                <td>Software Engineering</td>
+                                <td>3</td>
+                                <td class="font-medium text-success">A</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">CSC3201</td>
+                                <td>Web Technology</td>
+                                <td>3</td>
+                                <td class="font-medium text-success">A-</td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">PHY1001</td>
+                                <td>Physics 1</td>
+                                <td>3</td>
+                                <td class="font-medium">B+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="widget-card">
+                    <div class="widget-header">
+                        <h3>Private Advisor Notes</h3>
+                    </div>
+                    <div class="widget-body">
+
+                        <form id="advisor-note-form" class="note-form">
+                            <div class="form-group full-width" style="margin-bottom: 1.6rem;">
+                                <label for="new_note">Add a Note (Visible only to faculty/advisors)</label>
+                                <textarea id="new_note" name="note" rows="3"
+                                    placeholder="Log a meeting, academic concern, or recommendation..."
+                                    required></textarea>
+                            </div>
+                            <div class="form-actions-right">
+                                <button type="submit" class="btn-primary btn-sm">
+                                    <span class="icon">💾</span> Save Note
+                                </button>
+                            </div>
+                        </form>
+
+                        <hr class="divider">
+
+                        <div class="notes-list">
+                            <div class="note-item">
+                                <div class="note-meta">
+                                    <span class="note-author">Dr. Alan Turing</span>
+                                    <span class="note-date text-muted">May 10, 2026</span>
+                                </div>
+                                <p class="note-content">Alice visited during office hours to discuss her final year
+                                    project. Recommended she look into AI-driven automation tools. Excellent progress.
+                                </p>
+                            </div>
+
+                            <div class="note-item">
+                                <div class="note-meta">
+                                    <span class="note-author">Prof. Jane Smith</span>
+                                    <span class="note-date text-muted">Jan 15, 2026</span>
+                                </div>
+                                <p class="note-content">Cleared for overload registration this semester based on high
+                                    academic standing.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
