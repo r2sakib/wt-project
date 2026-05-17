@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/login.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
 
     <title>Department Head Login</title>
 </head>
@@ -18,10 +21,17 @@
             <p>Department Head Portal Login</p>
         </div>
         <div class="errorMessage">
-            <!--echo the Error message in paragraph and display inline block if error true -->
+            <p>
+                <?php 
+                    if(isset($_SESSION['login_error'])) {
+                        echo $_SESSION['login_error']; 
+                        unset($_SESSION['login_error']);
+                    }
+                ?>
+            </p>
         </div>
         <div class="loginLower">
-            <form action="" method="post">
+            <form action="./controllers/authController.php" method="post">
                 <div class="loginEmail">
                     <label for="loginEmailInput">
                         Email Address

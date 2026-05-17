@@ -19,7 +19,7 @@
             <p>Head of Department</p>
         </div>
         <div class="headerLogout">
-            <a href="#" class="logoutBtn">
+            <a href="./controllers/authController.php?action=logout" class="logoutBtn">
                 <p>Logout</p>
             </a>
         </div>

@@ -36,7 +36,7 @@
     font-size: 1.4rem;
     text-align: center;
     color: #e71414;
-    display: none;
+    /* display: none; */
 }
 
 .loginLower{
