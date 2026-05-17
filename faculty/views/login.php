@@ -13,7 +13,7 @@
             <label>Password Account</label>
             <input type="password" name="password" required placeholder="••••••••">
         </div>
-        <button type="submit" class="login-btn">Authenticate Session</button>
+        <button type="submit" class="login-btn">LOGIN</button>
     </form>
 </div>
 <?php include __DIR__ . '/templates/footer.php'; ?>

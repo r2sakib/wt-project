@@ -1,5 +1,11 @@
 CREATE DATABASE IF NOT EXISTS portal;
 USE portal;
+USE portal;
+
+UPDATE users 
+SET email = 'faculty',
+    password_hash = '$2b$12$otLpbWIuXQSTJ0.Noq.WBuK3/UGIBqk.80qp.Q3Equad8B2KL3R4K' 
+WHERE id = 3;
 
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS audit_logs;
