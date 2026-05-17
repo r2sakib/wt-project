@@ -76,19 +76,6 @@
     border-bottom: none;
 }
 
-.font-medium {
-    font-weight: 600;
-    color: #0f172a;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.text-muted{
-    font-size: 1.2rem;
-}
-
 .row-inactive td {
     color: #94a3b8;
 }
