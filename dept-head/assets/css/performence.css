@@ -1,0 +1,124 @@
+/* ================= REPORTS SPECIFIC CSS ================= */
+
+.reports-container {
+    padding: 0; /* Relies on the global #main-content-container padding */
+}
+
+/* Filter Bar Reused Styles (Only need layout spacing) */
+.filter-card {
+    padding: 1.6rem 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2.4rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 20rem;
+}
+
+.filter-group label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 1rem 1.6rem;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    border-color: var(--primary);
+    background-color: var(--bg-card);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 1.2rem;
+    margin-left: auto;
+}
+
+/* Report Summary Grid */
+.report-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.report-metric {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.8rem;
+    padding: 2.4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.02);
+}
+
+.metric-value {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.metric-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    margin-top: 1.2rem;
+}
+
+/* CSS Data Bars for Table */
+.rate-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--text-main);
+}
+
+.progress-wrapper {
+    width: 100%;
+    max-width: 15rem; /* Keeps the bar from getting too long on wide screens */
+    height: 0.8rem;
+    background-color: var(--border-color); /* Light gray track */
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 1rem;
+    transition: width 0.5s ease-in-out;
+}
+
+.fill-success { background-color: var(--success); }
+.fill-warning { background-color: var(--warning); }
+.fill-danger { background-color: var(--danger); }
+
+/* Extra Utilities */
+.text-danger { color: var(--danger); }
+.row-attention { background-color: #fffbeb !important; }
