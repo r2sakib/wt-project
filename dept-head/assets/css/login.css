@@ -36,7 +36,6 @@
     font-size: 1.4rem;
     text-align: center;
     color: #e71414;
-    /* display: none; */
 }
 
 .loginLower{
@@ -95,4 +94,37 @@ form{
 
 .loginBtn:hover{
     background: #004494;
+}
+
+.password-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.password-wrapper input{
+    margin: 0 !important;
+    padding-right: 4.5rem !important
+}
+
+.toggle-password{
+    position: absolute;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+    opacity: 0.6;
+    outline: none;
+}
+
+.toggle-password:hover{
+    opacity: 1;
 }

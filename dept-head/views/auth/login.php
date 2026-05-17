@@ -43,12 +43,34 @@
                     <label for="loginPassInput">
                         Password
                     </label>
-                    <input type="password" name="loginPassInput" id="loginPassInput" placeholder="Enter your password">
+                    <div class="password-wrapper">
+                        <input type="password" name="loginPassInput" id="loginPassInput"
+                            placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">
+                            👁️
+                        </button>
+                    </div>
                 </div>
                 <input type="submit" value="Login" class="loginBtn">
             </form>
         </div>
     </section>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('loginPassInput');
+
+        togglePassword.addEventListener('click', function () {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+
+            this.textContent = isPassword ? '🙈' : '👁️';
+        });
+    </script>
+</body>
+
+</html>
 </body>
 
 </html>
