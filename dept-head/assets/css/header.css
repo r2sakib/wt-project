@@ -1,62 +1,73 @@
 header {
     height: 10vh;
-    background: #fff;
+    background-color: var(--bg-card);
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1.6rem;
-    padding: 1rem;
-    box-shadow: 0 0 10px #cdcdcd;
+    padding: 1rem 3.2rem;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 900;
 }
 
 header div {
     margin: 0 1rem;
-    
 }
 
-.headerProfile img{
+.headerProfile img {
     height: 5rem;
     width: 5rem;
-    border-radius: 100%;
+    border-radius: 50%;
     cursor: pointer;
-    border: 1px solid #000;
-    box-shadow: 0 0 5px #333;
-    transform: scale(1.1);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-header div h1{
+.headerProfile img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.12);
+}
+
+header div h1 {
     font-size: 1.6rem;
+    color: var(--text-main);
+    margin: 0;
 }
 
-header div p{
+header div p {
     font-size: 1.4rem;
-    color: #777;
+    color: var(--text-muted);
+    margin: 0;
 }
 
-.headerLogout{
+.headerLogout {
     padding: 0.4rem;
 }
 
-.logoutBtn p{
-    padding: 0.7rem;
-    font-size: 1.6rem;
-    background: #f8fafc;
-    color: #dc2626;
-    font-weight: 500;
-    border: 1px solid #e2e8f0;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.logoutBtn p:hover{
-    border: 1px solid  #dc2626;
-    transform: scale(1.1);
-    background: #fca5a589;
-}
-
-.logoutBtn{
+.logoutBtn {
     text-decoration: none !important;
+    display: inline-block;
 }
 
+.logoutBtn p {
+    margin: 0;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+    background-color: var(--secondary);
+    color: var(--danger);
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
 
+.logoutBtn p:hover {
+    border-color: var(--danger);
+    background-color: #fee2e2;
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.2rem 0.6rem rgba(220, 38, 38, 0.15);
+}

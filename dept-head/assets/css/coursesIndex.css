@@ -4,26 +4,9 @@
     box-sizing: border-box;
 }
 
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2.4rem;
-}
-
-.header-info h2 {
-    margin: 0 0 0.4rem 0;
-    font-size: 2.4rem;
-    color: #1e293b;
-}
-
 .filter-card {
-    background-color: #ffffff;
-    border-radius: 0.8rem;
     padding: 1.6rem 2.4rem;
     margin-bottom: 2.4rem;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.02);
-    border: 1px solid #e2e8f0;
 }
 
 .filter-form {
@@ -72,20 +55,6 @@
     margin-left: auto;
 }
 
-.badge-open {
-    background-color: #dbeafe;
-    color: #2563eb;
-}
-
-.badge-closed {
-    background-color: #fee2e2;
-    color: #dc2626;
-}
-
 .row-attention {
     background-color: #fffbeb !important;
-}
-
-.text-warning {
-    color: #d97706;
 }

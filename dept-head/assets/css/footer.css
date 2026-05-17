@@ -1,8 +1,8 @@
-.app-footer {
+.app-footer{
     background-color: #1e293b;
     border-top: 1px solid #334155;
     padding: 2rem 3.2rem;
-    margin-top: auto;
+    margin-top: auto; 
     width: 100%;
     box-sizing: border-box;
 }
@@ -35,7 +35,7 @@
 }
 
 .footer-links a:hover {
-    color: #3b82f6;
+    color: var(--primary);
 }
 
 .separator {
