@@ -1,0 +1,31 @@
+.course-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.course-pill {
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    letter-spacing: 0.05rem;
+    transition: background-color 0.2s ease;
+}
+
+.course-pill:hover {
+    background-color: var(--border-color);
+    cursor: default;
+}
+
+.row-attention {
+    background-color: #fffbeb !important;
+}
+
+.text-danger {
+    color: var(--danger);
+    font-weight: 700;
+}
