@@ -2,7 +2,6 @@
 session_start();
 require_once '../model/AuthModel.php';
 
-// Check if form was submitted and an action was provided
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     
     $action = $_POST['action'];
@@ -12,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
 
-            // Basic validation
+            // validation
             if (empty($email) || empty($password)) {
                 $_SESSION['login_error'] = "Please fill in all fields.";
                 header("Location: ../view/login.php");
@@ -37,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
             break;
 
         case 'logout':
-            // Destroy the session variables and the session itself
             session_unset();
             session_destroy(); 
             header("Location: ../view/login.php");
@@ -45,12 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
             break;
 
         default:
-            // Invalid action fallback
             header("Location: ../view/login.php");
             exit();
     }
 } else {
-    // Redirect if accessed directly without a POST request
     header("Location: ../view/login.php");
     exit();
 }

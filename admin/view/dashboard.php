@@ -46,10 +46,10 @@
             <div class="col card" style="text-align: left;">
                 <h3 class="text-center">Institution CGPA Distribution</h3>
                 <ul>
-                    <li>Distinction (3.7 - 4.0): <?php echo $stats['cgpa_distribution']['distinction'] ?? 0; ?></li>
-                    <li>Good Standing (3.0 - 3.69): <?php echo $stats['cgpa_distribution']['good_standing'] ?? 0; ?></li>
-                    <li>Average (2.0 - 2.99): <?php echo $stats['cgpa_distribution']['average'] ?? 0; ?></li>
-                    <li style="color: red;">Probation (< 2.0): <?php echo $stats['cgpa_distribution']['probation'] ?? 0; ?></li>
+                    <li>Great (3.7 - 4.0): <?php echo $stats['cgpa_distribution']['great'] ?? 0; ?></li>
+                    <li>Good (3.0 - 3.69): <?php echo $stats['cgpa_distribution']['good'] ?? 0; ?></li>
+                    <li>Average (2.5 - 2.99): <?php echo $stats['cgpa_distribution']['average'] ?? 0; ?></li>
+                    <li style="color: red;">Probation (< 2.5): <?php echo $stats['cgpa_distribution']['probation'] ?? 0; ?></li>
                 </ul>
             </div>
         </div>

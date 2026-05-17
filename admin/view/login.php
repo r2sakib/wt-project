@@ -19,10 +19,10 @@
         <form method="POST" action="../controller/AuthController.php">
             <input type="hidden" name="action" value="login">
             
-            <label>Email:</label>
+            <label>Email</label>
             <input type="email" name="email" required>
 
-            <label>Password:</label>
+            <label>Password</label>
             <input type="password" name="password" required>
 
             <input type="submit" value="Login">
