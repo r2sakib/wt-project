@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calender</title>
+</head>
+
+<body>
+    <div class="calendar-container">
+
+        <div class="page-header">
+            <div class="header-info">
+                <h2>Department Calendar</h2>
+                <p class="text-muted">Manage academic deadlines, meetings, and university events.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary">
+                    <span class="icon">➕</span> Add Event
+                </button>
+            </div>
+        </div>
+
+        <div class="calendar-layout">
+
+            <div class="widget-card calendar-main">
+                <div class="calendar-nav widget-header">
+                    <button class="btn-icon">⬅️</button>
+                    <h3>May 2026</h3>
+                    <button class="btn-icon">➡️</button>
+                </div>
+
+                <div class="widget-body">
+                    <div class="calendar-grid calendar-weekdays">
+                        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    </div>
+
+                    <div class="calendar-grid calendar-days">
+                        <div class="cal-day inactive">26</div>
+                        <div class="cal-day inactive">27</div>
+                        <div class="cal-day inactive">28</div>
+                        <div class="cal-day inactive">29</div>
+                        <div class="cal-day inactive">30</div>
+
+                        <div class="cal-day">1 <span class="cal-event event-holiday">May Day</span></div>
+                        <div class="cal-day">2</div>
+                        <div class="cal-day">3</div>
+                        <div class="cal-day">4</div>
+                        <div class="cal-day">5</div>
+                        <div class="cal-day">6</div>
+                        <div class="cal-day">7 <span class="cal-event event-academic">Midterm Grades Due</span></div>
+                        <div class="cal-day">8</div>
+                        <div class="cal-day">9</div>
+                        <div class="cal-day">10</div>
+                        <div class="cal-day">11</div>
+                        <div class="cal-day">12</div>
+                        <div class="cal-day">13</div>
+                        <div class="cal-day">14</div>
+                        <div class="cal-day">15 <span class="cal-event event-admin">Faculty Senate 2PM</span></div>
+                        <div class="cal-day">16</div>
+
+                        <div class="cal-day today">
+                            <span class="today-number">17</span>
+                            <span class="cal-event event-academic">Registration Opens</span>
+                        </div>
+
+                        <div class="cal-day">18</div>
+                        <div class="cal-day">19</div>
+                        <div class="cal-day">20</div>
+                        <div class="cal-day">21</div>
+                        <div class="cal-day">22</div>
+                        <div class="cal-day">23</div>
+                        <div class="cal-day">24</div>
+                        <div class="cal-day">25</div>
+                        <div class="cal-day">26</div>
+                        <div class="cal-day">27</div>
+                        <div class="cal-day">28 <span class="cal-event event-admin">Curriculum Review</span></div>
+                        <div class="cal-day">29</div>
+                        <div class="cal-day">30</div>
+                        <div class="cal-day">31</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-card upcoming-sidebar">
+                <div class="widget-header">
+                    <h3>Upcoming Events</h3>
+                </div>
+                <div class="widget-body">
+
+                    <div class="upcoming-list">
+                        <div class="upcoming-item">
+                            <div class="date-box bg-blue">
+                                <span class="month">May</span>
+                                <span class="day">17</span>
+                            </div>
+                            <div class="event-details">
+                                <span class="event-title">Fall Registration Opens</span>
+                                <span class="event-time text-muted">Academic &bull; 8:00 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div class="date-box bg-purple">
+                                <span class="month">May</span>
+                                <span class="day">28</span>
+                            </div>
+                            <div class="event-details">
+                                <span class="event-title">Curriculum Review</span>
+                                <span class="event-time text-muted">Administrative &bull; 10:00 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div class="date-box bg-orange">
+                                <span class="month">Jun</span>
+                                <span class="day">10</span>
+                            </div>
+                            <div class="event-details">
+                                <span class="event-title">Final Exams Begin</span>
+                                <span class="event-time text-muted">Academic &bull; All Day</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
