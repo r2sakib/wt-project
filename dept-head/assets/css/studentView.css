@@ -1,0 +1,121 @@
+.profile-layout {
+    display: grid;
+    grid-template-columns: 32rem 1fr;
+    gap: 2.4rem;
+    align-items: start;
+}
+
+.profile-sidebar {
+    padding: 3.2rem 2.4rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.profile-img-lg {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.4rem solid var(--bg-main);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.6rem;
+}
+
+.profile-header h3 {
+    margin: 0 0 0.4rem 0;
+    font-size: 2rem;
+    color: var(--text-main);
+}
+
+.badge-wrapper {
+    margin-top: 1.2rem;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2.4rem 0;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-num {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    margin-top: 0.4rem;
+}
+
+.profile-details p {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 1.2rem;
+}
+
+.profile-details p strong {
+    color: var(--text-muted);
+    display: inline-block;
+    width: 14rem;
+}
+
+.form-actions-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-top: 2.4rem;
+}
+
+.note-item {
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    padding: 1.6rem;
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.note-author {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.note-content {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.text-success {
+    color: var(--success);
+}
