@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="headerProfile">
-            <img src="../../assets/img/proPic.webp" alt="profile picture">
+            <img src="./assets/img/proPic.webp" alt="profile picture">
         </div>
         <div class="headerDetails">
             <h1>Md. Fahim Muhtashim</h1>

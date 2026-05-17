@@ -28,12 +28,10 @@
 
         <div class="filter-card">
             <form class="filter-form" id="student-search-form">
-                <div class="search-wrapper">
-                    <label for="search-student" class="sr-only">Search Students</label>
+                <div class="search-wrapper filter-group">
+                    <label for="search-student" class="sr-only">Search Students <span class="search-icon">🔍</span> </label>
                     <div class="search-input-group">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="search-student" name="search"
-                            placeholder="Search by student name or ID number..." autocomplete="off">
+                        <input type="text" id="search-student" class="form-input" name="search" placeholder="Search by student name or ID number..." autocomplete="off">
                     </div>
                 </div>
 

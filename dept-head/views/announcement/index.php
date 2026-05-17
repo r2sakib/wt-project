@@ -31,8 +31,7 @@
 
                 <div class="filter-group" style="flex: 2; min-width: 30rem;">
                     <label for="search-announcement">Search Notices</label>
-                    <input type="text" id="search-announcement" name="search" placeholder="Search keywords..."
-                        class="form-input">
+                    <input type="text" id="search-announcement" name="search" placeholder="Search keywords..." class="form-input">
                 </div>
 
                 <div class="filter-group">
@@ -73,9 +72,7 @@
                 </div>
 
                 <div class="announcement-body">
-                    <p>Dear Faculty, please remember that our end-of-year curriculum review is scheduled for next
-                        Thursday. All course coordinators must submit their syllabus revision proposals by Tuesday end
-                        of day. Attendance is mandatory.</p>
+                    <p>Dear Faculty, please remember that our end-of-year curriculum review is scheduled for next Thursday. All course coordinators must submit their syllabus revision proposals by Tuesday end of day. Attendance is mandatory.</p>
                 </div>
             </div>
 
@@ -97,9 +94,7 @@
                 </div>
 
                 <div class="announcement-body">
-                    <p>Registration for the Fall 2026 semester officially opens tomorrow at 8:00 AM. Please ensure you
-                        have met with your academic advisor and cleared any outstanding financial holds on your account
-                        before attempting to register.</p>
+                    <p>Registration for the Fall 2026 semester officially opens tomorrow at 8:00 AM. Please ensure you have met with your academic advisor and cleared any outstanding financial holds on your account before attempting to register.</p>
                 </div>
 
                 <div class="announcement-attachments">
