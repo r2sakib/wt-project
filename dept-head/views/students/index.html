@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+</head>
+
+<body>
+    <div class="students-container">
+
+        <div class="page-header">
+            <div class="header-info">
+                <h2>Students Directory</h2>
+                <p class="text-muted">Search and manage all students enrolled in your department.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-outline">
+                    <span class="icon">📥</span> Export List
+                </button>
+            </div>
+        </div>
+
+        <div class="filter-card">
+            <form class="filter-form" id="student-search-form">
+                <div class="search-wrapper">
+                    <label for="search-student" class="sr-only">Search Students</label>
+                    <div class="search-input-group">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-student" name="search"
+                            placeholder="Search by student name or ID number..." autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-program">Programme</label>
+                    <select id="filter-program" name="program">
+                        <option value="all">All Programmes</option>
+                        <option value="BSc-CSE">B.Sc. in CSE</option>
+                        <option value="MSc-SE">M.Sc. in SE</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filter-standing">Standing</label>
+                    <select id="filter-standing" name="standing">
+                        <option value="all">All Statuses</option>
+                        <option value="good">Good Standing</option>
+                        <option value="probation">Probation</option>
+                        <option value="dismissed">Dismissed</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-card">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Programme</th>
+                        <th>Semester</th>
+                        <th>CGPA</th>
+                        <th>Standing</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="student-table-body">
+                    <tr>
+                        <td class="font-medium">22-45678-1</td>
+                        <td>Alice Johnson</td>
+                        <td>B.Sc. in CSE</td>
+                        <td>8th</td>
+                        <td class="font-medium">3.85</td>
+                        <td><span class="badge badge-good">Good Standing</span></td>
+                        <td class="text-right">
+                            <button class="btn-icon btn-edit" title="View Profile">👁️</button>
+                        </td>
+                    </tr>
+
+                    <tr class="row-attention">
+                        <td class="font-medium">23-49876-2</td>
+                        <td>Bob Smith</td>
+                        <td>B.Sc. in CSE</td>
+                        <td>4th</td>
+                        <td class="font-medium text-warning">2.10</td>
+                        <td><span class="badge badge-probation">Probation</span></td>
+                        <td class="text-right">
+                            <button class="btn-icon btn-edit" title="View Profile">👁️</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-medium">21-33214-3</td>
+                        <td>Charlie Davis</td>
+                        <td>M.Sc. in SE</td>
+                        <td>-</td>
+                        <td class="font-medium">1.80</td>
+                        <td><span class="badge badge-dismissed">Dismissed</span></td>
+                        <td class="text-right">
+                            <button class="btn-icon btn-edit" title="View Profile">👁️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
