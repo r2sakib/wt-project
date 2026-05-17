@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($conn)) {
         
-        $query = "SELECT id, name, password_hash, role FROM users WHERE email = ? AND is_active = TRUE LIMIT 1";
+        $query = "SELECT id, name, password_hash, role FROM users WHERE email =" $email AND is_active = TRUE LIMIT 1";
         $stmt = $conn->prepare($query);
         
         $stmt->bind_param("s", $email);
