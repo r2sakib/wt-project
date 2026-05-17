@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs</title>
+</head>
+
+<body>
+    <div class="programs-container">
+
+        <div class="page-header">
+            <div class="header-info">
+                <h2>Degree Programmes</h2>
+                <p class="text-muted">Manage academic degree programs offered by your department.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary">
+                    <span class="icon">➕</span> Add New Program
+                </button>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Programme Name</th>
+                        <th>Duration</th>
+                        <th>Credits</th>
+                        <th>Status</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-medium">BSc-CSE</td>
+                        <td>B.Sc. in Computer Science & Engineering</td>
+                        <td>4 Years</td>
+                        <td>148</td>
+                        <td><span class="badge badge-active">Active</span></td>
+                        <td class="text-right">
+                            <button class="btn-icon btn-edit" title="Edit">✏️</button>
+                            <button class="btn-icon btn-danger" title="Deactivate">🛑</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-medium">MSc-SE</td>
+                        <td>M.Sc. in Software Engineering</td>
+                        <td>2 Years</td>
+                        <td>36</td>
+                        <td><span class="badge badge-active">Active</span></td>
+                        <td class="text-right">
+                            <button class="btn-icon btn-edit" title="Edit">✏️</button>
+                            <button class="btn-icon btn-danger" title="Deactivate">🛑</button>
+                        </td>
+                    </tr>
+
+                    <tr class="row-inactive">
+                        <td class="font-medium">BSc-IT</td>
+                        <td>B.Sc. in Information Technology</td>
+                        <td>4 Years</td>
+                        <td>140</td>
+                        <td><span class="badge badge-inactive">Inactive</span></td>
+                        <td class="text-right">
+                            <button class="btn-icon btn-edit" title="Edit">✏️</button>
+                            <button class="btn-icon btn-success" title="Activate">✅</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
