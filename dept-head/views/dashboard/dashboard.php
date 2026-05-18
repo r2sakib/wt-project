@@ -53,7 +53,6 @@ require_once __DIR__ . '/../../controllers/DashboardController.php';
         <div class="widget-card">
             <div class="widget-header">
                 <h3>Recent Grade Appeals</h3>
-                <a href="#" class="btn-sm">View All</a>
             </div>
             <?php if (empty($recent_appeals)): ?>
                     <p class="text-muted">No recent appeals require immediate attention.</p>

@@ -14,14 +14,15 @@ function getDepartmentIdByHead($conn, $head_id) {
 
 function getCoursesByDepartment($conn, $department_id) {
     $courses = [];
-    $query = "SELECT c.*, p.name AS program_name, s.name AS semester_name, u.name AS faculty_name 
+    $query = "SELECT c.*, p.name AS program_name, p.code AS program_code, s.name AS semester_name, u.name AS faculty_name 
               FROM courses c
               JOIN programs p ON c.program_id = p.id
-              JOIN semesters s ON c.semester_id = s.id
+              LEFT JOIN semesters s ON c.semester_id = s.id
               LEFT JOIN faculty f ON c.faculty_id = f.id
               LEFT JOIN users u ON f.user_id = u.id
-              WHERE p.department_id = ? 
+              WHERE p.department_id = ?
               ORDER BY c.code ASC";
+              
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $department_id);
     $stmt->execute();

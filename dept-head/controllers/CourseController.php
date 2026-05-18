@@ -16,10 +16,26 @@ if (isset($conn)) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $courses = [];
+    $programs = [];
+
     if (!$department_id) {
         $_SESSION['error_msg'] = "You are not assigned to any department yet.";
         header("Location: ../index.php?page=courses");
         exit();
+    } 
+    
+    if ($department_id) {
+        $courses = getCoursesByDepartment($conn, $department_id);
+    
+        $stmt = $conn->prepare("SELECT id, name, code FROM programs WHERE department_id = ?");
+        $stmt->bind_param("i", $department_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $programs[] = $row;
+        }
+        $stmt->close();
     }
 
     $action = $_POST['action'];

@@ -52,7 +52,7 @@ require_once __DIR__ . '/../../controllers/AppealController.php';
                             <td>
                                 <div style="margin-bottom: 0.8rem;">
                                     <strong style="font-size:1.1rem; color:#ef4444;">👨‍🎓 Student Reason:</strong>
-                                    <p style="margin: 0.2rem 0; color:#334155; font-style:italic;">"${appeal['reason']}"</p>
+                                    <p style="margin: 0.2rem 0; color:#334155; font-style:italic;"><php echo htmlspecialchars(${appeal['reason']}); ?></p>
                                 </div>
                                 <div>
                                     <strong style="font-size:1.1rem; color:#2563eb;">👨‍🏫 Faculty Comment:</strong>

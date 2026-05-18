@@ -37,7 +37,6 @@ if (!isset($performance_data)) {
                         <th>Course Code</th>
                         <th>Course Title</th>
                         <th>Operational Target Capacity</th>
-                        <th>Projected Section Average</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,8 +47,7 @@ if (!isset($performance_data)) {
                             <tr>
                                 <td class="font-medium"><?php echo htmlspecialchars($row['code']); ?></td>
                                 <td><?php echo htmlspecialchars($row['title']); ?></td>
-                                <td><?php echo htmlspecialchars($row['max_seats']); ?> Students/Sec</td>
-                                <td style="font-weight: 600; color: #2563eb;"><?php echo number_format($row['calculated_avg'], 2); ?> GP</td>
+                                <td><?php echo htmlspecialchars($row['max_seats']); ?> Students/Sections</td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
