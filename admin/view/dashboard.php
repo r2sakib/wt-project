@@ -42,6 +42,9 @@
             <a href="../controller/SemesterReportController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">Semester Reports</button>
             </a>
+            <a href="../controller/CalendarController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">Academic Calender</button>
+            </a>
         </div>
 
         <div class="row">
