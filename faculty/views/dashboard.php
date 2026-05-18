@@ -36,7 +36,7 @@
                 <label style="font-size:12px; font-weight:600; display:block; margin-bottom:4px; color:#2563eb;">Upload Profile Picture Asset</label>
                 <input type="file" name="profile_pic" accept="image/*">
             </div>
-            <button type="submit" class="btn">Commit Changes</button>
+            <button type="submit" class="btn">Change Profile</button>
         </form>
     </div>
 </div>
