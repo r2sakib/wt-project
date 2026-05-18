@@ -1,10 +1,7 @@
 <?php
-session_start();
-if(!isset($_SESSION['user_id'])) exit;
-require_once __DIR__ . '/../../controllers/AppealController.php';
-?>
-<?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['user_id'])) exit;
 require_once __DIR__ . '/../../controllers/AppealController.php';
 ?>
