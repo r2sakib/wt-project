@@ -29,7 +29,7 @@ class FacultyController {
             $pic_path = $current['profile_pic'];
 
             if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
-                // Creates the directory dynamically if missing
+                // Creates the profiles upload directory automatically if missing
                 $target_dir = __DIR__ . '/../uploads/profiles/';
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0777, true);
@@ -73,20 +73,26 @@ class FacultyController {
     }
 
     public function handlePublishGrades() {
-        $this->model->publishGrades(intval($_POST['course_id']));
-        header("Location: index.php?action=course_manage&course_id=" . intval($_POST['course_id']));
+        $course_id = intval($_POST['course_id']);
+        $this->model->publishGrades($course_id);
+        header("Location: index.php?action=course_manage&course_id=" . $course_id);
         exit();
     }
 
     public function handleAddAnnouncement() {
-        $this->model->addAnnouncement(intval($_POST['course_id']), $this->faculty_id, trim($_POST['title']), trim($_POST['body']));
-        header("Location: index.php?action=course_manage&course_id=" . intval($_POST['course_id']));
+        $course_id = intval($_POST['course_id']);
+        $title = trim($_POST['title']);
+        $body = trim($_POST['body']);
+        $this->model->addAnnouncement($course_id, $this->faculty_id, $title, $body);
+        header("Location: index.php?action=course_manage&course_id=" . $course_id);
         exit();
     }
 
     public function handleDeleteAnnouncement() {
-        $this->model->deleteAnnouncement(intval($_GET['id']), $this->faculty_id);
-        header("Location: index.php?action=course_manage&course_id=" . intval($_GET['course_id']));
+        $id = intval($_GET['id']);
+        $course_id = intval($_GET['course_id']);
+        $this->model->deleteAnnouncement($id, $this->faculty_id);
+        header("Location: index.php?action=course_manage&course_id=" . $course_id);
         exit();
     }
 
@@ -97,9 +103,16 @@ class FacultyController {
         $path = '';
 
         if (isset($_FILES['material_file']) && $_FILES['material_file']['error'] === UPLOAD_ERR_OK) {
+            // Creates the materials upload directory automatically if missing
+            $target_dir = __DIR__ . '/../uploads/materials/';
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
             $ext = pathinfo($_FILES['material_file']['name'], PATHINFO_EXTENSION);
             $file_name = time() . '_mat.' . $ext;
-            if (move_uploaded_file($_FILES['material_file']['tmp_name'], __DIR__ . '/../uploads/materials/' . $file_name)) {
+            
+            if (move_uploaded_file($_FILES['material_file']['tmp_name'], $target_dir . $file_name)) {
                 $path = 'uploads/materials/' . $file_name;
             }
         }
@@ -111,14 +124,19 @@ class FacultyController {
     }
 
     public function handleDeleteMaterial() {
-        $this->model->deleteMaterial(intval($_GET['id']), $this->faculty_id);
-        header("Location: index.php?action=course_manage&course_id=" . intval($_GET['course_id']));
+        $id = intval($_GET['id']);
+        $course_id = intval($_GET['course_id']);
+        $this->model->deleteMaterial($id, $this->faculty_id);
+        header("Location: index.php?action=course_manage&course_id=" . $course_id);
         exit();
     }
 
     public function handleRespondAppeal() {
-        $this->model->submitAppealComment(intval($_POST['appeal_id']), trim($_POST['faculty_comment']));
-        header("Location: index.php?action=course_manage&course_id=" . intval($_POST['course_id']));
+        $appeal_id = intval($_POST['appeal_id']);
+        $course_id = intval($_POST['course_id']);
+        $comment = trim($_POST['faculty_comment']);
+        $this->model->submitAppealComment($appeal_id, $comment);
+        header("Location: index.php?action=course_manage&course_id=" . $course_id);
         exit();
     }
 }
