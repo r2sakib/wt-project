@@ -17,6 +17,12 @@
         <p>Welcome back, <strong><?php echo $_SESSION['admin_name']; ?></strong>.</p>
         <hr><br>
 
+        <div style="margin-bottom: 20px;">
+            <a href="../controller/DepartmentController.php?action=list" style="text-decoration: none;">
+                <button style="background: #007bff; color: white; font-size: 16px;">Manage Departments</button>
+            </a>
+        </div>
+
         <div class="row">
             <div class="col card">
                 <h3>Active Students</h3>
