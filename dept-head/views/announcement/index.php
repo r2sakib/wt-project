@@ -1,110 +1,116 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])) exit;
+require_once __DIR__ . '/../../controllers/AnnouncementController.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/announcement.css">
-
-    <title>Announcement</title>
+    <link rel="stylesheet" href="../../assets/css/programForm.css">
+    <link rel="stylesheet" href="../../assets/css/programIndex.css">
+    <title>Announcements</title>
 </head>
-
 <body>
-    <div class="announcements-container">
-
+    <div class="programs-container">
         <div class="page-header">
             <div class="header-info">
                 <h2>Department Announcements</h2>
-                <p class="text-muted">Broadcast official notices, deadlines, and news to students and faculty.</p>
-            </div>
-            <div class="header-actions">
-                <button class="btn-primary">
-                    <span class="icon">📢</span> New Announcement
-                </button>
+                <p class="text-muted">Broadcast official notices, guidelines, and urgent updates to students and staff.</p>
             </div>
         </div>
 
-        <div class="filter-card">
-            <form class="filter-form" id="announcements-filter-form">
+        <?php if(isset($_SESSION['success_msg'])): ?>
+            <div style="background: #d1fae5; color: #065f46; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                <?php echo $_SESSION['success_msg']; unset($_SESSION['success_msg']); ?>
+            </div>
+        <?php endif; ?>
 
-                <div class="filter-group" style="flex: 2; min-width: 30rem;">
-                    <label for="search-announcement">Search Notices</label>
-                    <input type="text" id="search-announcement" name="search" placeholder="Search keywords..." class="form-input">
+        <?php if(isset($_SESSION['error_msg'])): ?>
+            <div style="background: #fee2e2; color: #991b1b; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                <?php echo $_SESSION['error_msg']; unset($_SESSION['error_msg']); ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="form-card" style="margin-bottom: 3rem;">
+            <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Publish New Notice</h3>
+            <form action="controllers/AnnouncementController.php" method="POST">
+                <input type="hidden" name="action" value="add">
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="title">Notice Title <span class="required">*</span></label>
+                    <input type="text" id="title" name="title" placeholder="e.g., Midterm Conflict Exam Guidelines" required style="width:100%;">
                 </div>
 
-                <div class="filter-group">
-                    <label for="filter-audience">Target Audience</label>
-                    <select id="filter-audience" name="audience">
-                        <option value="all">Everyone</option>
-                        <option value="students">Students Only</option>
-                        <option value="faculty">Faculty Only</option>
-                    </select>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="body">Announcement Content <span class="required">*</span></label>
+                    <textarea id="body" name="body" rows="4" placeholder="Type announcement details here..." required style="width:100%; font-family:inherit; padding:1rem; border:1px solid #ccc; border-radius:4px;"></textarea>
                 </div>
 
-                <div class="filter-actions">
-                    <button type="submit" class="btn-primary btn-sm">Filter</button>
+                <div style="display:flex; justify-content:flex-end;">
+                    <button type="submit" class="btn-primary" style="padding: 1rem 2.5rem;">🚀 Broadcast Notice</button>
                 </div>
             </form>
         </div>
 
-        <div class="announcement-feed">
-
-            <div class="announcement-card pinned">
-                <div class="announcement-header">
-                    <div class="title-wrapper">
-                        <span class="pin-icon" title="Pinned Announcement">📌</span>
-                        <h3 class="announcement-title">Mandatory Curriculum Review Meeting</h3>
-                    </div>
-                    <div class="announcement-actions">
-                        <button class="btn-icon" title="Edit">✏️</button>
-                        <button class="btn-icon text-danger" title="Delete">🗑️</button>
-                    </div>
-                </div>
-
-                <div class="announcement-meta">
-                    <span class="meta-item text-muted">Posted by: <strong>You</strong></span>
-                    <span class="meta-separator">&bull;</span>
-                    <span class="meta-item text-muted">May 17, 2026</span>
-                    <span class="meta-separator">&bull;</span>
-                    <span class="badge badge-purple">Faculty Only</span>
-                </div>
-
-                <div class="announcement-body">
-                    <p>Dear Faculty, please remember that our end-of-year curriculum review is scheduled for next Thursday. All course coordinators must submit their syllabus revision proposals by Tuesday end of day. Attendance is mandatory.</p>
-                </div>
-            </div>
-
-            <div class="announcement-card">
-                <div class="announcement-header">
-                    <h3 class="announcement-title">Fall 2026 Registration Opens Tomorrow</h3>
-                    <div class="announcement-actions">
-                        <button class="btn-icon" title="Edit">✏️</button>
-                        <button class="btn-icon text-danger" title="Delete">🗑️</button>
-                    </div>
-                </div>
-
-                <div class="announcement-meta">
-                    <span class="meta-item text-muted">Posted by: <strong>Registrar's Office</strong></span>
-                    <span class="meta-separator">&bull;</span>
-                    <span class="meta-item text-muted">May 16, 2026</span>
-                    <span class="meta-separator">&bull;</span>
-                    <span class="badge badge-active">Students Only</span>
-                </div>
-
-                <div class="announcement-body">
-                    <p>Registration for the Fall 2026 semester officially opens tomorrow at 8:00 AM. Please ensure you have met with your academic advisor and cleared any outstanding financial holds on your account before attempting to register.</p>
-                </div>
-
-                <div class="announcement-attachments">
-                    <a href="#" class="attachment-link">📄 Fall_Course_Catalog.pdf</a>
-                </div>
-            </div>
-
+        <h3 style="margin-bottom: 1.5rem; color: #1e293b;">Active Broadcasts History</h3>
+        <div class="table-card">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date Published</th>
+                        <th>Notice Headline</th>
+                        <th>Content Details</th>
+                        <th>Scope</th>
+                        <th>Publisher</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($announcements)): ?>
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem; color: #777;">
+                                No active announcements recorded.
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($announcements as $ann): ?>
+                            <tr>
+                                <td class="font-medium" style="white-space: nowrap;">
+                                    <?php echo date('M d, Y H:i', strtotime($ann['created_at'])); ?>
+                                </td>
+                                <td style="font-weight: 600; color: #1e293b; max-width: 200px; word-wrap: break-word;">
+                                    <?php echo htmlspecialchars($ann['title']); ?>
+                                </td>
+                                <td style="max-width: 350px; white-space: normal; word-wrap: break-word; color: #475569;">
+                                    <?php echo htmlspecialchars($ann['body']); ?>
+                                </td>
+                                <td>
+                                    <span class="badge <?php echo ($ann['scope'] === 'all') ? 'badge-active' : 'badge-pending'; ?>">
+                                        <?php echo strtoupper(htmlspecialchars($ann['scope'])); ?>
+                                    </span>
+                                <td>
+                                    <?php echo htmlspecialchars($ann['author_name']); ?>
+                                </td>
+                                <td class="text-right">
+                                    <?php if ($ann['scope'] !== 'all' || $_SESSION['role'] === 'admin'): ?>
+                                        <form action="controllers/AnnouncementController.php" method="POST" onsubmit="return confirm('Are you sure you want to take down this notice?');" style="margin: 0;">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="announcement_id" value="<?php echo $ann['id']; ?>">
+                                            <button type="submit" class="btn-icon btn-danger" style="border: none; background: none; color: #dc2626; cursor: pointer;">🛑 Remove</button>
+                                        </form>
+                                    <?php else: ?>
+                                        <span class="text-muted" style="font-size: 1.2rem;">Read-Only</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
-
     </div>
 </body>
-
 </html>

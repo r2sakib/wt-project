@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadView("views/appeals/index.php", mainContentContainer);
   } else if (pageParam === 'performance') {
     loadView("views/reports/performance.php", mainContentContainer, setupReportModuleActions);
+  } else if (pageParam === 'announcements') {
+    loadView("views/announcement/index.php", mainContentContainer);
   } else {
     loadView("views/dashboard/dashboard.php", mainContentContainer);
   }
@@ -69,6 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
       navLinks.forEach((link) => {
         const text = link.querySelector(".nav-text").innerText.trim();
         if (text === "Performance Reports") {
+          link.classList.add("active");
+        }
+      });
+    } else if (pageParam === 'announcements') {
+      navLinks.forEach((l) => l.classList.remove("active"));
+      navLinks.forEach((link) => {
+        const text = link.querySelector(".nav-text").innerText.trim();
+        if (text === "Announcements") {
           link.classList.add("active");
         }
       });
