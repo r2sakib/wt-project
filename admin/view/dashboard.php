@@ -39,6 +39,9 @@
             <a href="../controller/ReportController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">View Reports</button>
             </a>
+            <a href="../controller/SemesterReportController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">Semester Reports</button>
+            </a>
         </div>
 
         <div class="row">
