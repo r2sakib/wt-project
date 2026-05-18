@@ -13,12 +13,12 @@ $action = $_POST['action'] ?? $_GET['action'] ?? 'list';
 switch ($action) {
     case 'list':
         $programs = getAllPrograms();
-        include __DIR__ . '/../view/manage_programs.php';
+        include __DIR__ . '/../view/program_manage.php';
         break;
 
     case 'add_form':
         $departments = getActiveDepartments();
-        include __DIR__ . '/../view/add_program.php';
+        include __DIR__ . '/../view/program_add.php';
         break;
 
     case 'add_submit':

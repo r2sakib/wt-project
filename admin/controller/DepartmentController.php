@@ -14,7 +14,7 @@ $action = $_POST['action'] ?? $_GET['action'] ?? 'list';
 switch ($action) {
     case 'list':
         $departments = getAllDepartments();
-        include __DIR__ . '/../view/manage_departments.php';
+        include __DIR__ . '/../view/dept_manage.php';
         break;
 
     case 'delete':
@@ -25,7 +25,7 @@ switch ($action) {
         break;
     
     case 'add_form':
-        include __DIR__ . '/../view/add_department.php';
+        include __DIR__ . '/../view/dept_add.php';
         break;
 
     case 'add_submit':
@@ -44,7 +44,7 @@ switch ($action) {
         $dept_id = $_GET['dept_id'];
         $department = getDepartmentById($dept_id);
         $eligible_heads = getEligibleHeads(); // Fetch users to populate the dropdown
-        include __DIR__ . '/../view/edit_department.php';
+        include __DIR__ . '/../view/dept_edit.php';
         break;
 
     case 'edit_submit':
