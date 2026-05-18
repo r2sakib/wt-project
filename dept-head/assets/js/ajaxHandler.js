@@ -28,13 +28,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadView("views/layouts/sidebar.php", sidebarContainer, setupNavigation);
   loadView("views/layouts/header.php", headerContainer);
-  loadView("views/dashboard/dashboard.php", mainContentContainer);
-  if (footerContainer) loadView("views/layouts/footer.php", footerContainer);
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const pageParam = urlParams.get('page');
+
+  if (pageParam === 'programs') {
+    loadView("views/programs/index.php", mainContentContainer, setupProgramListActions);
+  } else {
+    loadView("views/dashboard/dashboard.php", mainContentContainer);
+  }
+
+  if (footerContainer) loadView("views/layouts/footer.php", footerContainer);
 
 
   function setupNavigation() {
     const navLinks = document.querySelectorAll(".sidebar-nav .nav-link");
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('page');
+
+    if (pageParam === 'programs') {
+      navLinks.forEach((l) => l.classList.remove("active"));
+      navLinks.forEach((link) => {
+        const text = link.querySelector(".nav-text").innerText.trim();
+        if (text === "Degree Programmes") {
+          link.classList.add("active");
+        }
+      });
+    }
 
     navLinks.forEach((link) => {
       link.addEventListener("click", function (e) {
@@ -50,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadView("views/dashboard/dashboard.php", mainContentContainer);
             break;
           case "Degree Programmes":
-            loadView("views/programs/index.php", mainContentContainer);
+            loadView("views/programs/index.php", mainContentContainer, setupProgramListActions);
             break;
           case "Courses & Faculty":
             loadView("views/courses/index.php", mainContentContainer, setupCourseFilters);
@@ -138,5 +158,38 @@ document.addEventListener("DOMContentLoaded", function () {
         xhr.send(dataString);
       });
     }
+  }
+
+  function setupProgramListActions() {
+    const addProgramBtn = document.getElementById("btn-add-program");
+    
+    if (addProgramBtn) {
+      addProgramBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        loadView("views/programs/form.php", mainContentContainer, setupProgramFormActions);
+      });
+    }
+
+    const editBtns = document.querySelectorAll(".btn-edit");
+    editBtns.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const id = this.getAttribute("data-id");
+        loadView("views/programs/edit.php?id=" + id, mainContentContainer, setupProgramFormActions);
+      });
+    });
+  }
+
+  function setupProgramFormActions() {
+    const backBtn = document.getElementById("btn-back-programs");
+    const cancelBtn = document.getElementById("btn-cancel-programs");
+
+    const returnToList = function (e) {
+      e.preventDefault();
+      loadView("views/programs/index.php", mainContentContainer, setupProgramListActions);
+    };
+
+    if (backBtn) backBtn.addEventListener("click", returnToList);
+    if (cancelBtn) cancelBtn.addEventListener("click", returnToList);
   }
 });
