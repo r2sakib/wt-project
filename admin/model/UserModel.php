@@ -49,4 +49,24 @@ function updateUserRole($id, $new_role) {
     mysqli_close($conn);
     return $success;
 }
+
+function searchUsers($keyword) {
+    $conn = getConnection();
+    $searchTerm = "%" . $keyword . "%";
+    
+    $sql = "SELECT * FROM users WHERE name LIKE ? OR email LIKE ? ORDER BY role ASC, name ASC";
+            
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $searchTerm, $searchTerm);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $users = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $users[] = $row;
+    }
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return $users;
+}
 ?>

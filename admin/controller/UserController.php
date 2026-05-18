@@ -52,6 +52,20 @@ switch ($action) {
         header("Location: UserController.php?action=list");
         exit();
         break;
+        
+    case 'ajax_search':
+        $keyword = trim($_GET['keyword'] ?? '');
+        
+        if (empty($keyword)) {
+            $users = getAllUsers();
+        } else {
+            $users = searchUsers($keyword);
+        }
+        
+        header('Content-Type: application/json');
+        echo json_encode($users);
+        exit();
+        break;
 
     default:
         header("Location: UserController.php?action=list");
