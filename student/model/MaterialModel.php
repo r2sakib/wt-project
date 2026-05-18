@@ -1,5 +1,4 @@
 <?php
-// model/MaterialModel.php
 class MaterialModel {
     private $db;
 
@@ -10,7 +9,6 @@ class MaterialModel {
         }
     }
 
-    // Fetch all materials for courses a specific student is enrolled in
     public function getMaterialsForStudent($userId) {
         $query = "SELECT 
                     cm.id AS material_id,
@@ -32,7 +30,7 @@ class MaterialModel {
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Fetch a single material profile for downloading secure tracking
+   
     public function getMaterialById($materialId) {
         $query = "SELECT * FROM course_materials WHERE id = ?";
         $stmt = $this->db->prepare($query);
@@ -41,7 +39,7 @@ class MaterialModel {
         return $stmt->get_result()->fetch_assoc();
     }
 
-    // Fetch the single closest upcoming event for students
+   
     public function getNextImportantDate() {
         $query = "SELECT event_name, event_date, description 
                   FROM academic_calendar 

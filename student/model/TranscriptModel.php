@@ -1,5 +1,5 @@
 <?php
-// TranscriptModel.php
+
 class TranscriptModel {
     private $db;
 
@@ -10,7 +10,7 @@ class TranscriptModel {
         }
     }
 
-    // Get core student details along with program information
+  
     public function getStudentProfile($userId) {
         $query = "SELECT s.id AS student_pk, s.student_id_number, s.cgpa AS profile_cgpa, 
                          u.name AS student_name, p.name AS program_name 
@@ -25,7 +25,7 @@ class TranscriptModel {
         return $stmt->get_result()->fetch_assoc();
     }
 
-    // Save the newly calculated CGPA directly back into the student's profile table
+
     public function updateStudentCGPA($studentPk, $newCgpa) {
         $query = "UPDATE students SET cgpa = ? WHERE id = ?";
         $stmt = $this->db->prepare($query);
@@ -33,7 +33,7 @@ class TranscriptModel {
         $stmt->execute();
     }
 
-    // Get all non-dropped academic grade records
+   
     public function getTranscriptRecords($studentPk) {
         $query = "SELECT sem.name AS semester_name, c.code AS course_code, c.title AS course_title, 
                          c.credit_hours, ge.letter_grade, ge.gpa_point, ge.is_published
