@@ -47,7 +47,19 @@ if (!isset($semesters)) {
                     ?>
                 </td>
                 <td>
-                    <em>Pending...</em>
+                    <?php if ($sem['is_current'] == 0) { ?>
+                        <form action="../controller/SemesterController.php" method="POST" style="display:inline;" onsubmit="return confirm('Make this the current semester? This will archive the currently active one.');">
+                            <input type="hidden" name="action" value="set_current">
+                            <input type="hidden" name="sem_id" value="<?php echo $sem['id']; ?>">
+                            <input type="submit" value="Set as Current" style="background: #007bff; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">
+                        </form>
+                    <?php } else { ?>
+                        <form action="../controller/SemesterController.php" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to archive this semester?');">
+                            <input type="hidden" name="action" value="archive">
+                            <input type="hidden" name="sem_id" value="<?php echo $sem['id']; ?>">
+                            <input type="submit" value="Archive" style="background: #dc3545; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">
+                        </form>
+                    <?php } ?>
                 </td>
             </tr>
             <?php } ?>

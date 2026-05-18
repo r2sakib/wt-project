@@ -24,4 +24,28 @@ function addSemester($name, $start_date, $end_date, $drop_deadline, $grade_submi
     mysqli_close($conn);
     return $success;
 }
+
+function setCurrentSemester($id) {
+    $conn = getConnection();
+    
+    mysqli_query($conn, "UPDATE semesters SET is_current = 0");
+    
+    $stmt = mysqli_prepare($conn, "UPDATE semesters SET is_current = 1 WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    $success = mysqli_stmt_execute($stmt);
+    
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return $success;
+}
+
+function archiveSemester($id) {
+    $conn = getConnection();
+    $stmt = mysqli_prepare($conn, "UPDATE semesters SET is_current = 0 WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    $success = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return $success;
+}
 ?>

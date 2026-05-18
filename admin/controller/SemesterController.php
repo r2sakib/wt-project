@@ -34,6 +34,20 @@ switch ($action) {
         exit();
         break;
 
+    case 'set_current':
+        $id = $_POST['sem_id'];
+        setCurrentSemester($id);
+        header("Location: SemesterController.php?action=list");
+        exit();
+        break;
+
+    case 'archive':
+        $id = $_POST['sem_id'];
+        archiveSemester($id);
+        header("Location: SemesterController.php?action=list");
+        exit();
+        break;
+
     default:
         header("Location: SemesterController.php?action=list");
         exit();
