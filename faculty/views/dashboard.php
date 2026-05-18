@@ -1,7 +1,9 @@
 <div class="profile-layout">
     <div class="card avatar-card">
-        <img src="<?php echo (!empty($profile['profile_pic']) && file_exists($profile['profile_pic'])) ? $profile['profile_pic'] : 'assets/default-avatar.png'; ?>" alt="Avatar" class="avatar-image">
-        <h3><?php echo htmlspecialchars($profile['name']); ?></h3>
+       <img src="<?php echo !empty($profile['profile_pic']) ? $profile['profile_pic'] : 'uploads/profiles/default.png'; ?>" 
+             alt="Avatar" 
+             class="avatar-image" 
+             onerror="this.src='https://ui-avatars.com/api/?name=<?php echo urlencode($profile['name']); ?>&background=random';">
         <p style="color:#64748b; margin:0; font-size:13px;"><?php echo htmlspecialchars($profile['designation']); ?></p>
         <div class="meta-list">
             <p><strong>Room:</strong> <?php echo htmlspecialchars($profile['office_room']); ?></p>

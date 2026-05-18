@@ -29,9 +29,16 @@ class FacultyController {
             $pic_path = $current['profile_pic'];
 
             if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
+                // Creates the directory dynamically if missing
+                $target_dir = __DIR__ . '/../uploads/profiles/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
+
                 $ext = pathinfo($_FILES['profile_pic']['name'], PATHINFO_EXTENSION);
                 $file_name = time() . '_prof.' . $ext;
-                if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], __DIR__ . '/../uploads/profiles/' . $file_name)) {
+                
+                if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_dir . $file_name)) {
                     $pic_path = 'uploads/profiles/' . $file_name;
                 }
             }
