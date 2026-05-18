@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadView("views/programs/index.php", mainContentContainer, setupProgramListActions);
   } else if (pageParam === 'courses') {
     loadView("views/courses/index.php", mainContentContainer, setupCourseListActions);
+  } else if (pageParam === 'students') {
+    loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
   } else {
     loadView("views/dashboard/dashboard.php", mainContentContainer);
   }
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadView("views/courses/index.php", mainContentContainer, setupCourseListActions);
             break;
           case "Students Directory":
-            loadView("views/students/index.php", mainContentContainer);
+            loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
             break;
           case "Grade Appeals":
             loadView("views/appeals/index.php", mainContentContainer);
@@ -239,6 +241,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const dataString = `program=${encodeURIComponent(program)}&status=${encodeURIComponent(status)}`;
         xhr.send(dataString);
+      });
+    }
+  }
+
+  function setupStudentListActions() {
+    const viewBtns = document.querySelectorAll(".btn-view-student");
+    viewBtns.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const id = this.getAttribute("data-id");
+        loadView("views/students/view.php?id=" + id, mainContentContainer, setupStudentViewActions);
+      });
+    });
+  }
+
+  function setupStudentViewActions() {
+    const backBtn = document.getElementById("btn-back-students");
+    if (backBtn) {
+      backBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
       });
     }
   }

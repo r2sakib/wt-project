@@ -1,59 +1,24 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])) exit;
+require_once __DIR__ . '/../../controllers/StudentController.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/studentIndext.css">
-
-    <title>Students</title>
+    <link rel="stylesheet" href="../../assets/css/programIndex.css">
+    <title>Student Directory</title>
 </head>
-
 <body>
-    <div class="students-container">
-
+    <div class="programs-container">
         <div class="page-header">
             <div class="header-info">
                 <h2>Students Directory</h2>
-                <p class="text-muted">Search and manage all students enrolled in your department.</p>
+                <p class="text-muted">Browse and manage students enrolled under your academic department.</p>
             </div>
-            <div class="header-actions">
-                <button class="btn-outline">
-                    <span class="icon">📥</span> Export List
-                </button>
-            </div>
-        </div>
-
-        <div class="filter-card">
-            <form class="filter-form" id="student-search-form">
-                <div class="search-wrapper filter-group">
-                    <label for="search-student" class="sr-only">Search Students <span class="search-icon">🔍</span> </label>
-                    <div class="search-input-group">
-                        <input type="text" id="search-student" class="form-input" name="search" placeholder="Search by student name or ID number..." autocomplete="off">
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <label for="filter-program">Programme</label>
-                    <select id="filter-program" name="program">
-                        <option value="all">All Programmes</option>
-                        <option value="BSc-CSE">B.Sc. in CSE</option>
-                        <option value="MSc-SE">M.Sc. in SE</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label for="filter-standing">Standing</label>
-                    <select id="filter-standing" name="standing">
-                        <option value="all">All Statuses</option>
-                        <option value="good">Good Standing</option>
-                        <option value="probation">Probation</option>
-                        <option value="dismissed">Dismissed</option>
-                    </select>
-                </div>
-            </form>
         </div>
 
         <div class="table-card">
@@ -61,55 +26,49 @@
                 <thead>
                     <tr>
                         <th>Student ID</th>
-                        <th>Name</th>
-                        <th>Programme</th>
-                        <th>Semester</th>
+                        <th>Full Name</th>
+                        <th>Program</th>
                         <th>CGPA</th>
-                        <th>Standing</th>
-                        <th class="text-right">Action</th>
+                        <th>Academic Status</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="student-table-body">
-                    <tr>
-                        <td class="font-medium">22-45678-1</td>
-                        <td>Alice Johnson</td>
-                        <td>B.Sc. in CSE</td>
-                        <td>8th</td>
-                        <td class="font-medium">3.85</td>
-                        <td><span class="badge badge-good">Good Standing</span></td>
-                        <td class="text-right">
-                            <button class="btn-icon btn-edit" title="View Profile">👁️</button>
-                        </td>
-                    </tr>
-
-                    <tr class="row-attention">
-                        <td class="font-medium">23-49876-2</td>
-                        <td>Bob Smith</td>
-                        <td>B.Sc. in CSE</td>
-                        <td>4th</td>
-                        <td class="font-medium text-warning">2.10</td>
-                        <td><span class="badge badge-probation">Probation</span></td>
-                        <td class="text-right">
-                            <button class="btn-icon btn-edit" title="View Profile">👁️</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="font-medium">21-33214-3</td>
-                        <td>Charlie Davis</td>
-                        <td>M.Sc. in SE</td>
-                        <td>-</td>
-                        <td class="font-medium">1.80</td>
-                        <td><span class="badge badge-dismissed">Dismissed</span></td>
-                        <td class="text-right">
-                            <button class="btn-icon btn-edit" title="View Profile">👁️</button>
-                        </td>
-                    </tr>
+                <tbody>
+                    <?php if (empty($students)): ?>
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem; color: #777;">
+                                No students found registered in your department.
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($students as $student): ?>
+                            <tr>
+                                <td class="font-medium"><?php echo htmlspecialchars($student['id']); ?></td>
+                                <td><?php echo htmlspecialchars($student['student_name']); ?></td>
+                                <td><?php echo htmlspecialchars($student['program_code']); ?></td>
+                                <td><?php echo number_format($student['cgpa'], 2); ?></td>
+                                <td>
+                                    <?php 
+                                    $statusClass = 'badge-inactive';
+                                    if ($student['academic_status'] === 'good standing') {
+                                        $statusClass = 'badge-active';
+                                    } elseif ($student['academic_status'] === 'probation') {
+                                        $statusClass = 'badge-pending';
+                                    }
+                                    ?>
+                                    <span class="badge <?php echo $statusClass; ?>">
+                                        <?php echo ucwords(htmlspecialchars($student['academic_status'])); ?>
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn-icon btn-view-student" title="View Profile" data-id="<?php echo $student['id']; ?>">👁️ View</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
-
     </div>
 </body>
-
 </html>
