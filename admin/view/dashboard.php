@@ -19,7 +19,10 @@
 
         <div style="margin-bottom: 20px;">
             <a href="../controller/DepartmentController.php?action=list" style="text-decoration: none;">
-                <button style="background: #007bff; color: white; font-size: 16px;">Manage Departments</button>
+                <button class="nav-btn">Manage Departments</button>
+            </a>
+            <a href="../controller/ProgramController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">Manage Programmes</button>
             </a>
         </div>
 

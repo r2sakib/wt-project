@@ -50,7 +50,6 @@ function getDepartmentById($id) {
 
 function updateDepartment($id, $name, $code, $head_id, $description) {
     $conn = getConnection();
-    // If head_id is empty, set it to NULL
     $head_id = !empty($head_id) ? $head_id : NULL; 
     
     $stmt = mysqli_prepare($conn, "UPDATE departments SET name=?, code=?, head_id=?, description=? WHERE id=?");
@@ -61,7 +60,7 @@ function updateDepartment($id, $name, $code, $head_id, $description) {
     return $success;
 }
 
-// Fetch users who are eligible to be heads (faculty or existing heads)
+
 function getEligibleHeads() {
     $conn = getConnection();
     $sql = "SELECT id, name, email FROM users WHERE role IN ('head', 'faculty') AND is_active = 1";
