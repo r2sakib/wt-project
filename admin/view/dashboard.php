@@ -33,6 +33,9 @@
             <a href="../controller/CourseController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">Manage Courses</button>
             </a>
+            <a href="../controller/GradeScaleController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">Manage Grade Scale</button>
+            </a>
         </div>
 
         <div class="row">
