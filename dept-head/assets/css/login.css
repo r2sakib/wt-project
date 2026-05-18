@@ -1,4 +1,4 @@
-.loginContainer{
+.loginContainer {
     width: 48rem;
     height: 40rem;
     padding: 4rem;
@@ -11,20 +11,20 @@
     transform: translate(-50%, -50%);
 }
 
-.loginUpper{
+.loginUpper {
     width: 100%;
     height: 25%;
     text-align: center;
 }
 
-.loginUpper h1{
+.loginUpper h1 {
     color: #000;
     font-size: 2.4rem;
     font-weight: 700;
     padding: 0.5rem;
 }
 
-.loginUpper p{
+.loginUpper p {
     padding: 0.5rem;
     font-size: 1.2rem;
     color: #777;
@@ -32,32 +32,32 @@
 
 }
 
-.errorMessage{
+.errorMessage {
     font-size: 1.4rem;
     text-align: center;
     color: #e71414;
 }
 
-.loginLower{
+.loginLower {
     width: 100%;
     height: 75%;
 }
 
-form{
+form {
     width: 100%;
     height: 100%;
     padding: 0.5rem;
 }
 
 .loginLower form .loginEmail,
-.loginLower form .loginPass{
+.loginLower form .loginPass {
     font-size: 1.6rem;
     margin: 0.5rem;
     padding: 0.5rem 0;
 }
 
 .loginLower form .loginEmail label,
-.loginLower form .loginPass label{
+.loginLower form .loginPass label {
     padding: 0.5rem 0;
     font-weight: 600;
     color: #333;
@@ -65,7 +65,7 @@ form{
 }
 
 .loginLower form .loginEmail input,
-.loginLower form .loginPass input{
+.loginLower form .loginPass input {
     margin: 0.5rem 0;
     padding: 0.5rem;
     display: block;
@@ -77,7 +77,7 @@ form{
     border: 1px solid #ccc;
 }
 
-.loginBtn{
+.loginBtn {
     margin: 0 0.5rem;
     padding: 12px;
     width: 98%;
@@ -92,11 +92,11 @@ form{
     transition: background 0.3s;
 }
 
-.loginBtn:hover{
+.loginBtn:hover {
     background: #004494;
 }
 
-.password-wrapper{
+.password-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -104,12 +104,12 @@ form{
     margin: 0.5rem 0;
 }
 
-.password-wrapper input{
+.password-wrapper input {
     margin: 0 !important;
     padding-right: 4.5rem !important
 }
 
-.toggle-password{
+.toggle-password {
     position: absolute;
     right: 1rem;
     background: transparent;
@@ -125,6 +125,53 @@ form{
     outline: none;
 }
 
-.toggle-password:hover{
+.toggle-password:hover {
     opacity: 1;
+}
+
+.quick-access-section {
+    margin: 4rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.quick-access-title {
+    font-size: 1.3rem;
+    color: #64748b;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.portal-btn {
+    display: flex;
+    align-items: center;
+    border: 1px solid #334155;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f8fafc;
+    color: #334155;
+    box-shadow: 0 0 10px #9e9e9e;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease-in-out;
+}
+
+.portal-btn:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }

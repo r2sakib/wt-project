@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +17,7 @@
             <h1 class="title">Academic Portal</h1>
             <p>Department Head Portal Login</p>
         </div>
+        
         <div class="errorMessage">
             <p>
                 <?php 
@@ -30,6 +28,7 @@
                 ?>
             </p>
         </div>
+        
         <div class="loginLower">
             <form action="./controllers/authController.php" method="post">
                 <div class="loginEmail">
@@ -53,6 +52,15 @@
                 </div>
                 <input type="submit" value="Login" class="loginBtn">
             </form>
+
+            <div class="quick-access-section">
+                <p class="quick-access-title">Other Portals & Links</p>
+                <div class="quick-links-grid">
+                    <a href="#" class="portal-btn"><span>🛡️</span> Admin</a>
+                    <a href="#" class="portal-btn"><span>👨‍🏫</span> Faculty</a>
+                    <a href="#" class="portal-btn"><span>🎓</span> Student</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -62,15 +70,10 @@
 
         togglePassword.addEventListener('click', function () {
             const isPassword = passwordInput.getAttribute('type') === 'password';
-
             passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-
             this.textContent = isPassword ? '🙈' : '👁️';
         });
     </script>
-</body>
-
-</html>
 </body>
 
 </html>

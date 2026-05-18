@@ -9,41 +9,43 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'head') {
 
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../models/Appeal.php';
+require_once __DIR__ . '/../models/Student.php';
 
-$department_id = null;
-if (isset($conn)) {
-    $department_id = getDepartmentIdByHead($conn, $_SESSION['user_id']);
-}
+$department_id = getDepartmentIdByHead($conn, $_SESSION['user_id']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if (!$department_id) {
-        $_SESSION['error_msg'] = "You are not assigned to any department yet.";
+    $action = $_POST['action'];
+    $appeal_id = (int)$_POST['appeal_id'];
+    $head_note = trim($_POST['head_note']);
+
+    if (empty($head_note)) {
+        $_SESSION['error_msg'] = "Please provide an accompanying note or instruction reason.";
         header("Location: ../index.php?page=appeals");
         exit();
     }
 
-    $action = $_POST['action'];
-    $appeal_id = (int)$_POST['appeal_id'];
-
     if ($action === 'approve') {
-        if (updateAppealStatus($conn, $appeal_id, 'approved', $department_id)) {
-            $_SESSION['success_msg'] = "Grade appeal approved successfully.";
+        if (processAppealDecision($conn, $appeal_id, 'approved', $head_note, $department_id)) {
+            $_SESSION['success_msg'] = "Appeal approved. Sent back to faculty for mark revision.";
         } else {
-            $_SESSION['error_msg'] = "Error approving grade appeal.";
+            $_SESSION['error_msg'] = "Error updating appeal status.";
         }
-    } elseif ($action === 'reject') {
-        if (updateAppealStatus($conn, $appeal_id, 'rejected', $department_id)) {
-            $_SESSION['success_msg'] = "Grade appeal rejected successfully.";
+    } 
+    
+    elseif ($action === 'reject') {
+        if (processAppealDecision($conn, $appeal_id, 'rejected', $head_note, $department_id)) {
+            $_SESSION['success_msg'] = "Appeal rejected with written notification logged.";
         } else {
-            $_SESSION['error_msg'] = "Error rejecting grade appeal.";
+            $_SESSION['error_msg'] = "Error updating appeal status.";
         }
     }
+
     header("Location: ../index.php?page=appeals");
     exit();
 }
 
 $appeals = [];
-if (isset($conn) && $department_id) {
+if ($department_id) {
     $appeals = getAppealsByDepartment($conn, $department_id);
 }
 ?>
