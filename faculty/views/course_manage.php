@@ -66,10 +66,16 @@
 <div class="card" style="margin-top:20px;">
     <h3>📢 Classroom Board Notifications & Announcements</h3>
     <form action="index.php?action=add_announcement" method="POST" class="flex-form">
-        <input type="hidden" name="course_id" value="<?php echo $course['id']; ?>">
+        <select name="course_id" required style="padding:8px; border:1px solid #cbd5e1; border-radius:4px; font-size:13px; font-weight:600; color:#334155; background:#fff;">
+            <?php foreach ($all_courses as $ac): ?>
+                <option value="<?php echo $ac['id']; ?>" <?php echo ($ac['id'] == $course['id']) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($ac['code'] . ' (' . $ac['semester'] . ')'); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
         <input type="text" name="title" placeholder="Announcement Header Title Text" required>
         <textarea name="body" placeholder="Message content payload parameters go here..." required></textarea>
-        <button type="submit" class="btn">Broadcast Notice</button>
+        <button type="submit" class="btn">Post Notice</button>
     </form>
     
     <h5>Active Notification Logs:</h5>
@@ -85,10 +91,16 @@
 <div class="card">
     <h3>📁 Shared Resources & Course Materials Device Manager</h3>
     <form action="index.php?action=add_material" method="POST" enctype="multipart/form-data" class="flex-form">
-        <input type="hidden" name="course_id" value="<?php echo $course['id']; ?>">
+        <select name="course_id" required style="padding:8px; border:1px solid #cbd5e1; border-radius:4px; font-size:13px; font-weight:600; color:#334155; background:#fff;">
+            <?php foreach ($all_courses as $ac): ?>
+                <option value="<?php echo $ac['id']; ?>" <?php echo ($ac['id'] == $course['id']) ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($ac['code']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
         <input type="text" name="title" placeholder="Material Description Topic Name" required style="flex:1;">
         <input type="file" name="material_file" required style="flex:1; font-size:12px;">
-        <select name="material_type" style="padding:8px;">
+        <select name="material_type" style="padding:8px; border:1px solid #cbd5e1; border-radius:4px;">
             <option value="PDF">Adobe PDF</option>
             <option value="DOCX">Microsoft Word</option>
             <option value="PPTX">PowerPoint Slides</option>

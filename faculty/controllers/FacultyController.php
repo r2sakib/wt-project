@@ -29,7 +29,6 @@ class FacultyController {
             $pic_path = $current['profile_pic'];
 
             if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
-                // Creates the profiles upload directory automatically if missing
                 $target_dir = __DIR__ . '/../uploads/profiles/';
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0777, true);
@@ -58,6 +57,9 @@ class FacultyController {
         $materials = $this->model->getMaterials($course_id);
         $appeals = $this->model->getAppeals($course_id);
         $distribution = $this->model->getGradeDistribution($course_id);
+        
+        // ⭐ Fetch all courses assigned to this faculty for cross-selection menus
+        $all_courses = $this->model->getAssignedCourses($this->faculty_id);
 
         include __DIR__ . '/../views/templates/header.php';
         include __DIR__ . '/../views/course_manage.php';
@@ -103,7 +105,6 @@ class FacultyController {
         $path = '';
 
         if (isset($_FILES['material_file']) && $_FILES['material_file']['error'] === UPLOAD_ERR_OK) {
-            // Creates the materials upload directory automatically if missing
             $target_dir = __DIR__ . '/../uploads/materials/';
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);

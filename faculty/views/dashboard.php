@@ -64,7 +64,7 @@
                 <td><?php echo $c['student_count']; ?> Students</td>
                 <td><span style="color:#b91c1c; font-weight:600;"><?php echo htmlspecialchars($c['grade_submission_deadline']); ?></span></td>
                 <td><?php echo ($c['grade_status'] == 1) ? '<span style="color:green; font-weight:600;">Published</span>' : '<span style="color:orange; font-weight:600;">Draft Mode</span>'; ?></td>
-                <td><a class="btn" href="index.php?action=course_manage&course_id=<?php echo $c['id']; ?>">Manage Course Hub</a></td>
+                <td><a class="btn" href="index.php?action=course_manage&course_id=<?php echo $c['id']; ?>">Manage Course</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
