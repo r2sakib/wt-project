@@ -55,9 +55,26 @@ require_once __DIR__ . '/../../controllers/DashboardController.php';
                 <h3>Recent Grade Appeals</h3>
                 <a href="#" class="btn-sm">View All</a>
             </div>
-            <div class="widget-body">
-                <p class="text-muted">No recent appeals require immediate attention.</p>
-            </div>
+            <?php if (empty($recent_appeals)): ?>
+                    <p class="text-muted">No recent appeals require immediate attention.</p>
+                <?php else: ?>
+                    <div class="recent-appeals-list" style="display: flex; flex-direction: column; gap: 1rem; width: 100%; text-align: left;">
+                        <?php foreach ($recent_appeals as $appeal): ?>
+                            <div class="appeal-item" style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 1.2rem; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b;">
+                                <div>
+                                    <strong style="font-size: 1.3rem; color: #1e293b;"><?php echo htmlspecialchars($appeal['student_name']); ?></strong>
+                                    <span style="color: #64748b; font-size: 1.1rem; margin-left: 0.5rem;">(<?php echo htmlspecialchars($appeal['course_code']); ?>)</span>
+                                    <p style="margin: 0.4rem 0 0 0; color: #475569; font-size: 1.2rem; font-style: italic; line-height: 1.4;">
+                                        "<?php echo htmlspecialchars(mb_strimwidth($appeal['reason'], 0, 80, "...")); ?>"
+                                    </p>
+                                </div>
+                                <span style="font-size: 1.1rem; color: #94a3b8; font-weight: 500; white-space: nowrap; margin-left: 1rem;">
+                                    <?php echo date('M d', strtotime($appeal['created_at'])); ?>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
         </div>
     </div>
 </div>
