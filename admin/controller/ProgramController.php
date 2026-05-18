@@ -35,6 +35,29 @@ switch ($action) {
         header("Location: ProgramController.php?action=list");
         exit();
         break;
+
+    case 'edit_form':
+        $prog_id = $_GET['prog_id'];
+        $program = getProgramById($prog_id);
+        $departments = getActiveDepartments();
+        include __DIR__ . '/../view/program_edit.php';
+        break;
+
+    case 'edit_submit':
+        $id = $_POST['prog_id'];
+        $department_id = $_POST['department_id'];
+        $name = trim($_POST['name']);
+        $code = trim($_POST['code']);
+        $total_credit_hours = $_POST['total_credit_hours'];
+        $duration_years = $_POST['duration_years'];
+        $description = trim($_POST['description']);
+        
+        if (!empty($department_id) && !empty($name) && !empty($code)) {
+            updateProgram($id, $department_id, $name, $code, $total_credit_hours, $duration_years, $description);
+        }
+        header("Location: ProgramController.php?action=list");
+        exit();
+        break;
     
     default:
         header("Location: ProgramController.php?action=list");

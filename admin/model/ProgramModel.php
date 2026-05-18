@@ -39,4 +39,26 @@ function addProgram($department_id, $name, $code, $total_credit_hours, $duration
     mysqli_close($conn);
     return $success;
 }
+
+function getProgramById($id) {
+    $conn = getConnection();
+    $stmt = mysqli_prepare($conn, "SELECT * FROM programs WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $program = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return $program;
+}
+
+function updateProgram($id, $department_id, $name, $code, $total_credit_hours, $duration_years, $description) {
+    $conn = getConnection();
+    $stmt = mysqli_prepare($conn, "UPDATE programs SET department_id=?, name=?, code=?, total_credit_hours=?, duration_years=?, description=? WHERE id=?");
+    mysqli_stmt_bind_param($stmt, "issiisi", $department_id, $name, $code, $total_credit_hours, $duration_years, $description, $id);
+    $success = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    return $success;
+}
 ?>
