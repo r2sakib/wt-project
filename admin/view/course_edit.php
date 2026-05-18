@@ -13,7 +13,7 @@
             <input type="hidden" name="course_id" value="<?php echo $course['id']; ?>">
             
             <label>Course Name:</label>
-            <input type="text" name="name" value="<?php echo $course['name']; ?>" required>
+            <input type="text" name="name" value="<?php echo $course['title']; ?>" required>
             
             <label>Course Code:</label>
             <input type="text" name="code" value="<?php echo $course['code']; ?>" required>
