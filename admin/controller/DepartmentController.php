@@ -23,7 +23,22 @@ switch ($action) {
         header("Location: DepartmentController.php?action=list");
         exit();
         break;
+    
+    case 'add_form':
+        include __DIR__ . '/../view/add_department.php';
+        break;
+
+    case 'add_submit':
+        $name = trim($_POST['name']);
+        $code = trim($_POST['code']);
+        $description = trim($_POST['description']);
         
+        if (!empty($name) && !empty($code)) {
+            addDepartment($name, $code, $description);
+        }
+        header("Location: DepartmentController.php?action=list");
+        exit();
+        break;
     
     default:
         header("Location: DepartmentController.php?action=list");
