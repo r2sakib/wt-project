@@ -24,6 +24,9 @@
             <a href="../controller/ProgramController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">Manage Programmes</button>
             </a>
+            <a href="../controller/SemesterController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">Manage Semester</button>
+            </a>
         </div>
 
         <div class="row">
