@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } else if (pageParam === 'students') {
     loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
   } else if (pageParam === 'appeals') {
-    loadView("views/appeals/index.php", mainContentContainer);
+    loadView("views/appeals/index.php", mainContentContainer, setupAppealsActions);
   } else if (pageParam === 'performance') {
     loadView("views/reports/performance.php", mainContentContainer, setupReportModuleActions);
   } else if (pageParam === 'announcements') {
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
             break;
           case "Grade Appeals":
-            loadView("views/appeals/index.php", mainContentContainer);
+            loadView("views/appeals/index.php", mainContentContainer, setupAppealsActions);
             break;
           case "Performance Reports":
             loadView("views/reports/performance.php", mainContentContainer, setupReportModuleActions);
@@ -295,6 +295,38 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         const targetViewUrl = this.getAttribute("data-target");
         loadView(targetViewUrl, mainContentContainer, setupReportModuleActions);
+      });
+    });
+  }
+
+  function setupAppealsActions() {
+    const forms = document.querySelectorAll(".table-card form");
+    forms.forEach(form => {
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        if (e.submitter) {
+          formData.append(e.submitter.name, e.submitter.value);
+        }
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", this.getAttribute("action"), true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+              const res = JSON.parse(xhr.responseText);
+              if (res.success) {
+                loadView("views/appeals/index.php", mainContentContainer, setupAppealsActions);
+              }
+            } catch(err) {
+              console.error(err);
+            }
+          }
+        };
+        xhr.send(formData);
       });
     });
   }

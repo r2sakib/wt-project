@@ -3,6 +3,11 @@ session_start();
 if(!isset($_SESSION['user_id'])) exit;
 require_once __DIR__ . '/../../controllers/AppealController.php';
 ?>
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])) exit;
+require_once __DIR__ . '/../../controllers/AppealController.php';
+?>
 <div class="programs-container">
     <div class="page-header">
         <div class="header-info">
@@ -52,10 +57,10 @@ require_once __DIR__ . '/../../controllers/AppealController.php';
                             <td>
                                 <div style="margin-bottom: 0.8rem;">
                                     <strong style="font-size:1.1rem; color:#ef4444;">👨‍🎓 Student Reason:</strong>
-                                    <p style="margin: 0.2rem 0; color:#334155; font-style:italic;"><php echo htmlspecialchars(${appeal['reason']}); ?></p>
+                                    <p style="margin: 0.2rem 0; color:#334155; font-style:italic;"><?php echo htmlspecialchars($appeal['reason']); ?></p>
                                 </div>
                                 <div>
-                                    <strong style="font-size:1.1rem; color:#2563eb;">👨‍🏫 Faculty Comment:</strong>
+                                    <span style="font-size:1.1rem; font-weight:600; color:#2563eb;">👨‍🏫 Faculty Comment:</span>
                                     <p style="margin: 0.2rem 0; color:#334155;">
                                         <?php echo !empty($appeal['faculty_comment']) ? htmlspecialchars($appeal['faculty_comment']) : '<span class="text-muted">No comment logged by lecturer yet.</span>'; ?>
                                     </p>
