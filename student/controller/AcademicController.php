@@ -1,5 +1,4 @@
 <?php
-// AcademicController.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -17,10 +16,10 @@ $user = $_SESSION['user'];
 $studentData     = $academicModel->getStudentInfo($user['id']);
 $enrolledCourses = $academicModel->getEnrolledCourses($user['id']);
  
-// Detect if the request came through JavaScript (AJAX)
+
 $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
-// ACTION A: ENROLL IN COURSE
+//enroll in course
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'enroll_course') {
     $courseId = isset($_POST['course_id']) ? intval($_POST['course_id']) : 0;
     
@@ -37,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     exit;
 }
  
-// ACTION B: DROP A COURSE
+//  drop a course
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'drop_course') {
     $courseId = isset($_POST['course_id']) ? intval($_POST['course_id']) : 0;
  
@@ -54,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     exit;
 }
  
-// ACTION C: LIVE CGPA BOX REFRESH
+// live cgpa
 if (isset($_GET['action']) && $_GET['action'] == 'get_live_cgpa') {
     header('Content-Type: application/json');
     $data = $academicModel->getLiveCGPA($user['id']);
@@ -75,7 +74,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'get_live_cgpa') {
     exit;
 }
  
-// ACTION D: LIVE SEARCH COURSE CATALOG
+// live search
 if (isset($_GET['action']) && $_GET['action'] == 'search_courses') {
     $search    = isset($_GET['query']) ? trim($_GET['query']) : '';
     $available = $academicModel->searchAvailableCourses($user['id'], $search);
@@ -86,8 +85,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'search_courses') {
             $remaining   = $course['max_seats'] - $course['filled_seats'];
             $seatDisplay = $remaining . " / " . $course['max_seats'];
             $isEnrolled  = intval($course['is_enrolled']) > 0;
- 
-            // Choose button visual state
+            
             if ($isEnrolled) {
                 $actionButton = "<input type='submit' value='Enrolled' disabled>";
             } else if ($remaining <= 0 || $course['status'] === 'closed') {
@@ -116,8 +114,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'search_courses') {
     echo $rows;
     exit; 
 }
- 
-// ACTION E: LIVE REFRESH ENROLLED COURSES TABLE ROWS
+
+// live refreash enrolled courses table rows
 if (isset($_GET['action']) && $_GET['action'] == 'get_enrolled_rows') {
     $result = $academicModel->getEnrolledCourses($user['id']);
     $rows   = '';

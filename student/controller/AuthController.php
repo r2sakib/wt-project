@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once(__DIR__ . "/../model/AcademicModel.php");
 $academicModel = new AcademicModel();
 
-// Initialize ALL error variables up front so view pages don't throw warnings
+
 $emailErr = ""; 
 $nameErr = "";
 $idErr = "";
@@ -18,7 +18,7 @@ $roleErr = "";
 $passErr = "";
 $cpassErr = "";
 
-// Only load student details if a user is actively logged in
+
 $user = $_SESSION['user'] ?? null;
 $studentData = null;
 $enrolledCourses = [];
@@ -28,9 +28,9 @@ if ($user && isset($user['id'])) {
     $enrolledCourses = $academicModel->getEnrolledCourses($user['id']);
 }
 
-// ==========================================================
-// REGISTER LOGIC
-// ==========================================================
+
+// regiser logic
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) { 
     $name = isset($_POST['name']) ? trim($_POST['name']) : ''; 
     $email = isset($_POST['email']) ? trim($_POST['email']) : ''; 
@@ -46,8 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
     if (strlen($password) < 6) $passErr = "Password must be 6 characters";
     if ($password !== $confirm_password) $cpassErr = "Passwords do not match";
 
-    // Process if all form validations pass
-    // Process if all form validations pass
+    // form validations 
     if (empty($nameErr) && empty($emailErr) && empty($idErr) && empty($roleErr) && empty($passErr) && empty($cpassErr)) {
         
         if ($academicModel->checkDuplicateEmail($email)) {
@@ -55,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
         } elseif ($academicModel->checkDuplicateStudentId($id)) {
             $idErr = "This Student ID number is already registered!";
         } else {
-            // Pack everything nicely for the model
+
             $data = [
                 "name"       => $name,
                 "email"      => $email,
@@ -75,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_btn'])) {
     }
 }
 
-// ==========================================================
-// LOGIN LOGIC
-// ==========================================================
+
+// login logic 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && !isset($_POST['role']) && !isset($_POST['action'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
@@ -98,9 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && !isset($_P
     }
 }
 
-// ==========================================================
-// A. HANDLE ENROLMENT FORM SUBMISSION (POST)
-// ==========================================================
+// enrollement form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'enroll_course') {
     $courseId = intval($_POST['course_id']);
     $userId   = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 1;
@@ -113,9 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     exit;
 }
 
-// ==========================================================
-// B. HANDLE DROP COURSE ACTION (POST)
-// ==========================================================
+// drop course action
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'drop_course') {
     $courseId = intval($_POST['course_id']);
     $userId   = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 1;
@@ -127,9 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     exit;
 }
 
-// ==========================================================
-// C. AJAX: LIVE CGPA + CREDITS (GET)
-// ==========================================================
+// live cgpa credit
 if (isset($_GET['action']) && $_GET['action'] == 'get_live_cgpa') {
     header('Content-Type: application/json');
     $data = $academicModel->getLiveCGPA($user['id'] ?? 0);
@@ -147,9 +140,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'get_live_cgpa') {
     exit;
 }
 
-// ==========================================================
-// D. AJAX: LIVE COURSE SEARCH (GET)
-// ==========================================================
+// =live course search
 if (isset($_GET['action']) && $_GET['action'] == 'search_courses') {
     $search    = isset($_GET['query']) ? trim($_GET['query']) : '';
     $available = $academicModel->searchAvailableCourses($user['id'] ?? 0, $search);

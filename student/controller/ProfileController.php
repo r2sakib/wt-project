@@ -3,7 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Protection Middleware - Redirect to login if session expires
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit;
@@ -15,9 +14,8 @@ $success = "";
 $passMsg = "";
 $user = $_SESSION['user'];
 
-// ==========================================================
-// 1. UPDATE PERSONAL INFORMATION
-// ==========================================================
+// update personal information
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'update_info') {
     if (isset($_POST['update_profile_btn'])) {
         $id = $_SESSION['user']['id'];
@@ -26,14 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
         $phone = trim($_POST['phone']);
 
         if ($model->updateProfile($id, $name, $email, $phone)) {
-            // Keep the alphanumeric student ID safe so it continues to display
+    
             $currentStudentID = $_SESSION['user']['student_id_number'] ?? 'N/A';
 
-            // Overwrite changes into the active session array instantly
             $_SESSION['user']['name'] = $name;
             $_SESSION['user']['email'] = $email;
             $_SESSION['user']['phone'] = $phone;
-            $_SESSION['user']['student_id_number'] = $currentStudentID; // Preserved!
+            $_SESSION['user']['student_id_number'] = $currentStudentID; 
 
             $_SESSION['profile_msg'] = "Personal information updated successfully!";
             
@@ -45,9 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     }
 }
 
-// ==========================================================
-// 2. UPLOAD PROFILE PICTURE
-// ==========================================================
+// profile picture
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'upload_pic') {
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
         $targetDir = "../uploads/";
@@ -66,18 +61,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     }
 }
 
-// ==========================================================
-// 3. CHANGE PASSWORD
-// ==========================================================
+// password change
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] == 'change_password') {
     $current = isset($_POST['current_password']) ? $_POST['current_password'] : '';
     $new = isset($_POST['new_password']) ? $_POST['new_password'] : '';
     $confirm = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
     
-    // Check if the typed current password matches database/session hash
     if (password_verify($current, $user['password_hash'])) {
         
-        // Check if new password and confirm password match inputs
         if ($new === $confirm) {
             $newHashed = password_hash($new, PASSWORD_DEFAULT);
             

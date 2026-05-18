@@ -1,5 +1,4 @@
 <?php
-// controller/MaterialController.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,7 +8,7 @@ $materialModel = new MaterialModel();
 
 
 
-// --- HANDLE FILE DOWNLOADS ---
+// file download
 if (isset($_GET['action']) && $_GET['action'] == 'download_material' && isset($_GET['id'])) {
     if (!isset($_SESSION['user'])) {
         die("Access Denied. Please log in first.");
@@ -19,11 +18,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'download_material' && isset($_
     $material = $materialModel->getMaterialById($materialId);
 
     if ($material) {
-        // Look into your project root uploads folder
         $filePath = __DIR__ . "/../uploads/" . $material['file_path'];
 
         if (file_exists($filePath)) {
-            // Send headers to force browser download dialog
+    
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
             header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
@@ -32,7 +30,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'download_material' && isset($_
             header('Pragma: public');
             header('Content-Length: ' . filesize($filePath));
             
-            // Clean outputs system buffer and read file contents
+    
             flush();
             readfile($filePath);
             exit;
@@ -44,12 +42,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'download_material' && isset($_
     }
 }
 
-/// --- LOAD DATA FOR DASHBOARD VIEW ---
+// load matts 
 $materialsList = [];
 if (isset($_SESSION['user']['id'])) {
     $materialsList = $materialModel->getMaterialsForStudent($_SESSION['user']['id']);
 }
 
-// ADD THIS LINE HERE: Fetch the upcoming calendar event
 $nextEvent = $materialModel->getNextImportantDate();
 ?>
