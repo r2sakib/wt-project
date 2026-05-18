@@ -80,58 +80,66 @@ if (!isset($users)) {
         document.getElementById('userSearch').addEventListener('input', function() {
             let keyword = this.value;
 
-            fetch('../controller/UserController.php?action=ajax_search&keyword=' + encodeURIComponent(keyword))
-            .then(response => response.json())
-            .then(data => {
-                let tbody = document.getElementById('userTableBody');
-                tbody.innerHTML = '';
+            let xhr = new XMLHttpRequest();
+            
+            xhr.open('GET', '../controller/UserController.php?action=ajax_search&keyword=' + encodeURIComponent(keyword), true);
 
-                if (data.length === 0) {
-                    tbody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No users found matching your search.</td></tr>";
-                    return;
-                }
+            xhr.onload = function() {
+                if (this.status === 200) {
+                    let data = JSON.parse(this.responseText);
+                    let tbody = document.getElementById('userTableBody');
+                    tbody.innerHTML = '';
 
-                let currentAdminId = <?php echo $_SESSION['admin_id']; ?>;
-
-                data.forEach(user => {
-                    let roleCapitalized = user.role.charAt(0).toUpperCase() + user.role.slice(1);
-                    
-                    let statusSpan = user.is_active == 1 
-                        ? '<span style="color: #28a745; font-weight: bold;">Active</span>' 
-                        : '<span style="color: #dc3545; font-weight: bold;">Inactive</span>';
-                    
-                    let toggleBtn = '';
-                    if (user.id != currentAdminId) {
-                        toggleBtn = user.is_active == 1
-                            ? `<input type="submit" value="Deactivate" style="background: #dc3545; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;" onclick="return confirm('Deactivate this user account?');">`
-                            : `<input type="submit" value="Activate" style="background: #28a745; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">`;
+                    if (data.length === 0) {
+                        tbody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No users found matching your search.</td></tr>";
+                        return;
                     }
 
-                    let row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td><strong>${user.name}</strong></td>
-                        <td>${user.email}</td>
-                        <td style="text-transform: capitalize;">${roleCapitalized}</td>
-                        <td>${statusSpan}</td>
-                        <td>
-                            <form action="../controller/UserController.php" method="GET" style="display:inline;">
-                                <input type="hidden" name="action" value="edit_form">
-                                <input type="hidden" name="user_id" value="${user.id}">
-                                <input type="submit" value="Edit" style="background: #007bff; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">
-                            </form>
-                            ${user.id != currentAdminId ? `
-                            <form action="../controller/UserController.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="action" value="toggle_status">
-                                <input type="hidden" name="user_id" value="${user.id}">
-                                <input type="hidden" name="current_status" value="${user.is_active}">
-                                ${toggleBtn}
-                            </form>` : ''}
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error fetching search results:', error));
+                    let currentAdminId = <?php echo $_SESSION['admin_id']; ?>;
+
+                    data.forEach(user => {
+                        let roleCapitalized = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+                        
+                        let statusSpan = user.is_active == 1 
+                            ? '<span style="color: #28a745; font-weight: bold;">Active</span>' 
+                            : '<span style="color: #dc3545; font-weight: bold;">Inactive</span>';
+                        
+                        let toggleBtn = '';
+                        if (user.id != currentAdminId) {
+                            toggleBtn = user.is_active == 1
+                                ? `<input type="submit" value="Deactivate" style="background: #dc3545; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;" onclick="return confirm('Deactivate this user account?');">`
+                                : `<input type="submit" value="Activate" style="background: #28a745; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">`;
+                        }
+
+                        let row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td><strong>${user.name}</strong></td>
+                            <td>${user.email}</td>
+                            <td style="text-transform: capitalize;">${roleCapitalized}</td>
+                            <td>${statusSpan}</td>
+                            <td>
+                                <form action="../controller/UserController.php" method="GET" style="display:inline;">
+                                    <input type="hidden" name="action" value="edit_form">
+                                    <input type="hidden" name="user_id" value="${user.id}">
+                                    <input type="submit" value="Edit" style="background: #007bff; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">
+                                </form>
+                                ${user.id != currentAdminId ? `
+                                <form action="../controller/UserController.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="action" value="toggle_status">
+                                    <input type="hidden" name="user_id" value="${user.id}">
+                                    <input type="hidden" name="current_status" value="${user.is_active}">
+                                    ${toggleBtn}
+                                </form>` : ''}
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+            };
+            xhr.onerror = function() {
+                console.error('Error fetching search results with XMLHttpRequest.');
+            };
+            xhr.send();
         });
     </script>
 </body>
