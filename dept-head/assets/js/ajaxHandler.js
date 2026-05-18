@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
   } else if (pageParam === 'appeals') {
     loadView("views/appeals/index.php", mainContentContainer);
+  } else if (pageParam === 'performance') {
+    loadView("views/reports/performance.php", mainContentContainer, setupReportModuleActions);
   } else {
     loadView("views/dashboard/dashboard.php", mainContentContainer);
   }
@@ -59,6 +61,14 @@ document.addEventListener("DOMContentLoaded", function () {
       navLinks.forEach((link) => {
         const text = link.querySelector(".nav-text").innerText.trim();
         if (text === "Courses & Faculty") {
+          link.classList.add("active");
+        }
+      });
+    } else if (pageParam === 'performance') {
+      navLinks.forEach((l) => l.classList.remove("active"));
+      navLinks.forEach((link) => {
+        const text = link.querySelector(".nav-text").innerText.trim();
+        if (text === "Performance Reports") {
           link.classList.add("active");
         }
       });
@@ -90,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadView("views/appeals/index.php", mainContentContainer);
             break;
           case "Performance Reports":
-            loadView("views/reports/performence.php", mainContentContainer);
+            loadView("views/reports/performance.php", mainContentContainer, setupReportModuleActions);
             break;
           case "Department Calendar":
             loadView("views/calender/index.php", mainContentContainer);
@@ -266,5 +276,16 @@ document.addEventListener("DOMContentLoaded", function () {
         loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
       });
     }
+  }
+
+  function setupReportModuleActions() {
+    const reportNavBtns = document.querySelectorAll(".report-nav-btn");
+    reportNavBtns.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const targetViewUrl = this.getAttribute("data-target");
+        loadView(targetViewUrl, mainContentContainer, setupReportModuleActions);
+      });
+    });
   }
 });

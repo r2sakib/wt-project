@@ -1,169 +1,73 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])) exit;
+require __DIR__ . '/../../controllers/ReportController.php';
+
+if (!isset($cgpa_data) || !$cgpa_data) {
+    $cgpa_data = [
+        'excellent' => 0,
+        'very_good' => 0,
+        'good' => 0,
+        'passing' => 0,
+        'probation' => 0
+    ];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/cgpa.css">
-
-    <title>CGPA</title>
+    <link rel="stylesheet" href="../../assets/css/programIndex.css">
+    <title>CGPA Distribution</title>
 </head>
-
 <body>
-    <div class="reports-container">
-
+    <div class="programs-container">
         <div class="page-header">
             <div class="header-info">
-                <h2>Student CGPA Trends</h2>
-                <p class="text-muted">Analyze department-wide grade distributions and top performers.</p>
-            </div>
-            <div class="header-actions">
-                <button class="btn-outline" id="btn-back-reports">
-                    <span class="icon">⬅️</span> Back to Reports
-                </button>
+                <h2>Department Analytics: CGPA Distribution</h2>
+                <p class="text-muted">Enrolled student volume divided into specific academic standings.</p>
             </div>
         </div>
 
-        <div class="filter-card">
-            <form class="filter-form">
-                <div class="filter-group">
-                    <label for="filter-cohort">Student Cohort</label>
-                    <select id="filter-cohort" name="cohort">
-                        <option value="all" selected>All Active Students</option>
-                        <option value="senior">Seniors (4th Year)</option>
-                        <option value="junior">Juniors (3rd Year)</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="filter-program">Programme</label>
-                    <select id="filter-program" name="program">
-                        <option value="all">All Programmes</option>
-                        <option value="BSc-CSE">B.Sc. in CSE</option>
-                    </select>
-                </div>
-                <div class="filter-actions">
-                    <button type="button" class="btn-primary btn-sm">Update View</button>
-                </div>
-            </form>
+        <div style="display: flex; gap: 1rem; margin-bottom: 2.5rem; background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <button class="btn-secondary report-nav-btn" data-target="views/reports/performance.php" style="padding: 0.8rem 1.5rem; cursor: pointer;">📈 Course Performance</button>
+            <button class="btn-primary report-nav-btn" data-target="views/reports/cgpa.php" style="padding: 0.8rem 1.5rem; cursor: pointer;">📊 CGPA Distribution</button>
+            <button class="btn-secondary report-nav-btn" data-target="views/reports/workload.php" style="padding: 0.8rem 1.5rem; cursor: pointer;">💼 Faculty Workload</button>
         </div>
 
-        <div class="report-summary-grid">
-            <div class="report-metric">
-                <span class="metric-value">3.45</span>
-                <span class="metric-label">Average CGPA</span>
-            </div>
-            <div class="report-metric">
-                <span class="metric-value text-success">42</span>
-                <span class="metric-label">Dean's List Candidates</span>
-            </div>
-            <div class="report-metric">
-                <span class="metric-value text-warning">12</span>
-                <span class="metric-label">Academic Probation</span>
-            </div>
+        <div class="table-card">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Performance Bracket Range</th>
+                        <th>Total Student Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-medium" style="color: #16a34a;">Excellent standing (3.75 - 4.00)</td>
+                        <td style="font-weight: 600;"><?php echo (int)$cgpa_data['excellent']; ?> Students</td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium" style="color: #2563eb;">Very Good standing (3.50 - 3.74)</td>
+                        <td style="font-weight: 600;"><?php echo (int)$cgpa_data['very_good']; ?> Students</td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium">Good standing (3.00 - 3.49)</td>
+                        <td style="font-weight: 600;"><?php echo (int)$cgpa_data['good']; ?> Students</td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium" style="color: #d97706;">Passing standing (2.20 - 2.99)</td>
+                        <td style="font-weight: 600;"><?php echo (int)$cgpa_data['passing']; ?> Students</td>
+                    </tr>
+                    <tr>
+                        <td class="font-medium" style="color: #dc2626;">Academic Probation Matrix (&lt; 2.20)</td>
+                        <td style="font-weight: 600; color: #dc2626;"><?php echo (int)$cgpa_data['probation']; ?> Students</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <div class="cgpa-layout">
-
-            <div class="widget-card">
-                <div class="widget-header">
-                    <h3>CGPA Distribution</h3>
-                </div>
-                <div class="widget-body">
-                    <div class="distribution-chart">
-
-                        <div class="chart-row">
-                            <span class="tier-label">3.75 - 4.00</span>
-                            <div class="chart-bar-wrapper">
-                                <div class="chart-bar fill-success" style="width: 15%;"></div>
-                            </div>
-                            <span class="tier-count">15%</span>
-                        </div>
-
-                        <div class="chart-row">
-                            <span class="tier-label">3.50 - 3.74</span>
-                            <div class="chart-bar-wrapper">
-                                <div class="chart-bar fill-primary" style="width: 25%;"></div>
-                            </div>
-                            <span class="tier-count">25%</span>
-                        </div>
-
-                        <div class="chart-row">
-                            <span class="tier-label">3.00 - 3.49</span>
-                            <div class="chart-bar-wrapper">
-                                <div class="chart-bar fill-primary" style="width: 40%;"></div>
-                            </div>
-                            <span class="tier-count">40%</span>
-                        </div>
-
-                        <div class="chart-row">
-                            <span class="tier-label">2.50 - 2.99</span>
-                            <div class="chart-bar-wrapper">
-                                <div class="chart-bar fill-warning" style="width: 15%;"></div>
-                            </div>
-                            <span class="tier-count">15%</span>
-                        </div>
-
-                        <div class="chart-row">
-                            <span class="tier-label">Below 2.50</span>
-                            <div class="chart-bar-wrapper">
-                                <div class="chart-bar fill-danger" style="width: 5%;"></div>
-                            </div>
-                            <span class="tier-count">5%</span>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="widget-card">
-                <div class="widget-header">
-                    <h3>Top Performers (Dean's List)</h3>
-                    <button class="btn-icon" title="View Full List">👁️</button>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Student</th>
-                            <th>CGPA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="table-stack">
-                                    <span class="font-medium">Alice Johnson</span>
-                                    <span class="text-muted">22-45678-1</span>
-                                </div>
-                            </td>
-                            <td class="font-medium text-success">3.95</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="table-stack">
-                                    <span class="font-medium">David Lee</span>
-                                    <span class="text-muted">22-11223-1</span>
-                                </div>
-                            </td>
-                            <td class="font-medium text-success">3.92</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="table-stack">
-                                    <span class="font-medium">Sarah Connor</span>
-                                    <span class="text-muted">23-99887-2</span>
-                                </div>
-                            </td>
-                            <td class="font-medium text-success">3.88</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
     </div>
 </body>
-
 </html>
