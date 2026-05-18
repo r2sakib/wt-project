@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loadView("views/reports/performance.php", mainContentContainer, setupReportModuleActions);
             break;
           case "Department Calendar":
-            loadView("views/calender/index.php", mainContentContainer);
+            loadView("views/calendar/index.php", mainContentContainer);
             break;
           case "Announcements":
             loadView("views/announcement/index.php", mainContentContainer);
