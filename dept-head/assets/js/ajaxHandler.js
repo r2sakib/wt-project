@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadView("views/courses/index.php", mainContentContainer, setupCourseListActions);
   } else if (pageParam === 'students') {
     loadView("views/students/index.php", mainContentContainer, setupStudentListActions);
+  } else if (pageParam === 'appeals') {
+    loadView("views/appeals/index.php", mainContentContainer);
   } else {
     loadView("views/dashboard/dashboard.php", mainContentContainer);
   }
