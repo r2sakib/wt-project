@@ -1,5 +1,5 @@
 <?php 
-// academic.php
+
 require_once("../controller/AcademicController.php");
  
 $loop_total_points  = 0.00;
@@ -11,7 +11,7 @@ if (isset($enrolledCourses) && $enrolledCourses->num_rows > 0) {
     while ($course = $enrolledCourses->fetch_assoc()) {
         $coursesArray[] = $course;
  
-        // Sum calculation logic
+        
         if (isset($course['is_published']) && $course['is_published'] == 1) {
             if (strtoupper($course['letter_grade'] ?? '') !== 'F' && ($course['gpa_point'] ?? 0) > 0) {
                 $loop_total_points += ($course['gpa_point'] * $course['credit_hours']);
@@ -36,7 +36,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
     <title>Academic Portal</title>
 </head>
 <body>
-    <!-- TOP HEADER -->
+
     <table width="100%">
         <tr>
             <td><h2>Academic Dashboard</h2></td>
@@ -45,7 +45,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
     </table>
     <hr>
  
-    <!-- DASHBOARD STATS CARD PANEL -->
+   
     <table>
         <tr>
             <td><b>Current Semester:</b></td>
@@ -71,7 +71,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
  
     <br><hr>
  
-    <!-- ACTIVE ENROLLED COURSES TABLE -->
+   
     <h3>Enrolled Courses</h3>
  
     <table border="1" cellpadding="6" cellspacing="0" width="60%" id="enrolled-table">
@@ -119,7 +119,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
  
     <br><hr>
  
-    <!-- COURSE RECRUITMENT AND CATALOG FILTER BROWSER -->
+   
     <h3>Browse & Enroll in Courses</h3>
     <p>
         Search Available Courses (live filter)<br>
@@ -137,13 +137,13 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
             </tr>
         </thead>
         <tbody id="courseTableBody">
-            <!-- JavaScript dynamically inserts rows here -->
+           
         </tbody>
     </table>
  
-    <!-- JAVASCRIPT AJAX MODULE -->
+   
     <script>
-    // 1. Refresh CGPA and Credits numbers at top of screen
+    
     function fetchLiveCGPA() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '../controller/AcademicController.php?action=get_live_cgpa', true);
@@ -158,7 +158,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
         xhr.send();
     }
  
-    // 2. Refresh the active rows table list
+   
     function fetchEnrolledRows() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '../controller/AcademicController.php?action=get_enrolled_rows', true);
@@ -171,7 +171,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
         xhr.send();
     }
  
-    // 3. Search catalog filter engine
+    
     function fetchCourses() {
         var query = document.getElementById('courseSearch').value;
         var xhr = new XMLHttpRequest();
@@ -185,7 +185,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
         xhr.send();
     }
  
-    // 4. Handle Enroll click
+
     function attachEnrollListeners() {
         var forms = document.querySelectorAll('#courseTableBody .enroll-form');
         forms.forEach(function (form) {
@@ -227,7 +227,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
         });
     }
  
-    // 5. Handle Drop Course click
+   
     function attachDropListeners() {
         var forms = document.querySelectorAll('#enrolled-table-body .drop-form');
         forms.forEach(function (form) {
@@ -264,7 +264,7 @@ if ($loop_live_cgpa < 2.00 && $loop_total_credits > 0) {
         });
     }
  
-    // Page launch initialization
+  
     window.onload = function () {
         fetchCourses();
         fetchEnrolledRows();

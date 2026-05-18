@@ -1,6 +1,6 @@
 <?php 
 require_once(__DIR__ . "/../controller/MaterialController.php");
-// Removed the duplicate session_start() from here!
+
 ?>
 <!DOCTYPE html>
 <html>

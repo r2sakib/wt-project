@@ -1,8 +1,6 @@
 <?php 
 require_once("../controller/AcademicController.php"); 
-// Assuming $enrolledCourses is fetched via your controller setup for the current semester
 
-// Capture the selected semester from the dropdown form submission
 $selected_semester = isset($_POST['semester_filter']) ? $_POST['semester_filter'] : 'current';
 ?>
 <!DOCTYPE html>
