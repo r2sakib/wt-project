@@ -48,6 +48,9 @@
             <a href="../controller/AppealController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">View Appeals</button>
             </a>
+            <a href="../controller/AnnouncementController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">Announcements</button>
+            </a>
         </div>
 
         <div class="row">
