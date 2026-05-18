@@ -1,1 +1,3 @@
 .vscode/
+DB_CONFIG.sql
+admin/setup_admin.php
