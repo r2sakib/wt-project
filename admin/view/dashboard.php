@@ -36,6 +36,9 @@
             <a href="../controller/GradeScaleController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">Manage Grade Scale</button>
             </a>
+            <a href="../controller/ReportController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">View Reports</button>
+            </a>
         </div>
 
         <div class="row">
