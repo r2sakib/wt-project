@@ -39,6 +39,27 @@ switch ($action) {
         header("Location: DepartmentController.php?action=list");
         exit();
         break;
+
+    case 'edit_form':
+        $dept_id = $_GET['dept_id'];
+        $department = getDepartmentById($dept_id);
+        $eligible_heads = getEligibleHeads(); // Fetch users to populate the dropdown
+        include __DIR__ . '/../view/edit_department.php';
+        break;
+
+    case 'edit_submit':
+        $id = $_POST['dept_id'];
+        $name = trim($_POST['name']);
+        $code = trim($_POST['code']);
+        $head_id = $_POST['head_id'];
+        $description = trim($_POST['description']);
+        
+        if (!empty($name) && !empty($code)) {
+            updateDepartment($id, $name, $code, $head_id, $description);
+        }
+        header("Location: DepartmentController.php?action=list");
+        exit();
+        break;
     
     default:
         header("Location: DepartmentController.php?action=list");
