@@ -27,6 +27,9 @@
             <a href="../controller/SemesterController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">Manage Semester</button>
             </a>
+            <a href="../controller/UserController.php?action=list">
+                <button class="nav-btn">Manage Users</button>
+            </a>
         </div>
 
         <div class="row">
