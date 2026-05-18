@@ -1,65 +1,64 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])) exit;
+require_once __DIR__ . '/../../controllers/CourseController.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/coursesIndex.css">
-
+    <link rel="stylesheet" href="../../assets/css/programIndex.css">
     <title>Courses</title>
 </head>
-
 <body>
-    <div class="courses-container">
-
+    <div class="programs-container">
         <div class="page-header">
             <div class="header-info">
-                <h2>Courses & Faculty</h2>
-                <p class="text-muted">Manage semester course offerings and faculty assignments.</p>
+                <h2>Courses & Faculty Management</h2>
+                <p class="text-muted">Manage academic courses, section rules, and faculty allocations.</p>
             </div>
             <div class="header-actions">
-                <button class="btn-primary" id="btn-assign-faculty">
-                    <span class="icon">🧑‍🏫</span> Assign Faculty
+                <button class="btn-primary" id="btn-add-course">
+                    <span class="icon">➕</span> Add New Course
                 </button>
             </div>
         </div>
 
-        <div class="filter-card">
-            <form class="filter-form" id="course-filter-form">
-                <div class="filter-group">
-                    <label for="filter-program">Programme</label>
-                    <select id="filter-program" name="program">
-                        <option value="all">All Programmes</option>
-                        <option value="BSc-CSE">B.Sc. in CSE</option>
-                        <option value="MSc-SE">M.Sc. in SE</option>
+        <?php if(isset($_SESSION['success_msg'])): ?>
+            <div style="background: #d1fae5; color: #065f46; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                <?php echo $_SESSION['success_msg']; unset($_SESSION['success_msg']); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION['error_msg'])): ?>
+            <div style="background: #fee2e2; color: #991b1b; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                <?php echo $_SESSION['error_msg']; unset($_SESSION['error_msg']); ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="table-card" style="margin-bottom: 2rem; padding: 2rem;">
+            <form id="course-filter-form" style="display: flex; gap: 1.5rem; align-items: flex-end;">
+                <div style="flex: 1;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Filter by Program</label>
+                    <select id="filter-program" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="">All Programs</option>
+                        <?php foreach($programs as $p): ?>
+                            <option value="<?php echo htmlspecialchars($p['name']); ?>"><?php echo htmlspecialchars($p['code']); ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
-
-                <div class="filter-group">
-                    <label for="filter-faculty">Faculty</label>
-                    <select id="filter-faculty" name="faculty">
-                        <option value="all">All Faculty</option>
-                        <option value="unassigned">⚠️ Unassigned Only</option>
-                        <option value="1">Dr. John Doe</option>
-                        <option value="2">Prof. Jane Smith</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label for="filter-status">Status</label>
-                    <select id="filter-status" name="status">
-                        <option value="all">All Statuses</option>
+                <div style="flex: 1;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Filter by Status</label>
+                    <select id="filter-status" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="">All Statuses</option>
                         <option value="open">Open</option>
                         <option value="closed">Closed</option>
+                        <option value="completed">Completed</option>
                     </select>
                 </div>
-
-                <div class="filter-actions">
-                    <button type="button" class="btn-secondary">Clear Filters</button>
-                    <button type="submit" class="btn-primary btn-sm">Apply Filters</button>
-                </div>
+                <button type="submit" class="btn-primary" style="height: fit-content; padding: 0.8rem 2rem;">Apply Filter</button>
             </form>
         </div>
 
@@ -69,53 +68,46 @@
                     <tr>
                         <th>Code</th>
                         <th>Course Title</th>
-                        <th>Programme</th>
+                        <th>Program</th>
                         <th>Faculty Assigned</th>
                         <th>Status</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="font-medium">CSC3201</td>
-                        <td>Web Technology</td>
-                        <td>B.Sc. in CSE</td>
-                        <td>Dr. John Doe</td>
-                        <td><span class="badge badge-open">Open</span></td>
-                        <td class="text-right">
-                            <button class="btn-icon btn-edit" title="Reassign Faculty">🔄</button>
-                            <button class="btn-icon" title="View Details">👁️</button>
-                        </td>
-                    </tr>
-
-                    <tr class="row-attention">
-                        <td class="font-medium">CSC4105</td>
-                        <td>Software Engineering</td>
-                        <td>B.Sc. in CSE</td>
-                        <td class="text-warning font-medium">⚠️ Unassigned</td>
-                        <td><span class="badge badge-closed">Closed</span></td>
-                        <td class="text-right">
-                            <button class="btn-icon btn-edit" title="Assign Faculty">➕</button>
-                            <button class="btn-icon" title="View Details">👁️</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="font-medium">SWE501</td>
-                        <td>Advanced System Design</td>
-                        <td>M.Sc. in SE</td>
-                        <td>Prof. Jane Smith</td>
-                        <td><span class="badge badge-open">Open</span></td>
-                        <td class="text-right">
-                            <button class="btn-icon btn-edit" title="Reassign Faculty">🔄</button>
-                            <button class="btn-icon" title="View Details">👁️</button>
-                        </td>
-                    </tr>
+                    <?php if (empty($courses)): ?>
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem; color: #777;">
+                                No courses found for your department.
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($courses as $c): ?>
+                            <tr>
+                                <td class="font-medium"><?php echo htmlspecialchars($c['code']); ?></td>
+                                <td><?php echo htmlspecialchars($c['title']); ?></td>
+                                <td><?php echo htmlspecialchars($c['program_name']); ?></td>
+                                <td><?php echo htmlspecialchars($c['faculty_name'] ?? 'Unassigned'); ?></td>
+                                <td>
+                                    <span class="badge <?php echo ($c['status'] === 'open') ? 'badge-active' : 'badge-inactive'; ?>">
+                                        <?php echo ucfirst(htmlspecialchars($c['status'])); ?>
+                                    </span>
+                                end
+                                <td class="text-right" style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                                    <button class="btn-icon btn-assign-faculty" title="Assign Faculty" data-id="<?php echo $c['id']; ?>">👤</button>
+                                    <button class="btn-icon btn-edit-course" title="Edit" data-id="<?php echo $c['id']; ?>">✏️</button>
+                                    <form action="controllers/CourseController.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this course?');" style="margin: 0;">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="course_id" value="<?php echo $c['id']; ?>">
+                                        <button type="submit" class="btn-icon btn-danger" style="border: none; background: none;">🛑</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
-
     </div>
 </body>
-
 </html>
