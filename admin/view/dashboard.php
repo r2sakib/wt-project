@@ -45,6 +45,9 @@
             <a href="../controller/CalendarController.php?action=list" style="text-decoration: none;">
                 <button class="nav-btn">Academic Calender</button>
             </a>
+            <a href="../controller/AppealController.php?action=list" style="text-decoration: none;">
+                <button class="nav-btn">View Appeals</button>
+            </a>
         </div>
 
         <div class="row">
