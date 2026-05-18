@@ -16,6 +16,11 @@ switch ($action) {
         include __DIR__ . '/../view/semester_report_view.php';
         break;
 
+    case 'print':
+        $reports = getSemesterPerformanceSummary();
+        include __DIR__ . '/../view/semester_report_print.php';
+        break;
+
     default:
         header("Location: SemesterReportController.php?action=view");
         exit();

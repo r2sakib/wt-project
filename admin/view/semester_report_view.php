@@ -14,9 +14,14 @@ if (!isset($reports)) {
     <div class="container" style="max-width: 900px;">
         <div class="justify-between">
             <h2>Semester Performance Summary</h2>
-            <a href="../controller/DashboardController.php" style="text-decoration: none;">
-                <button class="nav-btn" style="background: #6c757d;">Back to Dashboard</button>
-            </a>
+            <div>
+                <a href="../controller/SemesterReportController.php?action=print" target="_blank" style="text-decoration: none;">
+                    <button class="nav-btn" style="background: #17a2b8;">Print / Export Report</button>
+                </a>
+                <a href="../controller/DashboardController.php" style="text-decoration: none;">
+                    <button class="nav-btn" style="background: #6c757d;">Back to Dashboard</button>
+                </a>
+            </div>
         </div>
 
         <table>
