@@ -1,0 +1,54 @@
+.cgpa-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+}
+
+.distribution-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0.8rem 0;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.tier-label {
+    width: 9rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.chart-bar-wrapper {
+    flex: 1;
+    height: 1.2rem;
+    background-color: var(--border-color);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.chart-bar {
+    height: 100%;
+    border-radius: 1rem;
+    transition: width 1s ease-in-out;
+}
+
+.tier-count {
+    width: 4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-main);
+    flex-shrink: 0;
+}
+
+.fill-success { background-color: var(--success); }
+.fill-primary { background-color: var(--primary); }
+.fill-warning { background-color: var(--warning); }
+.fill-danger { background-color: var(--danger); }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+
+    <title>Header</title>
+</head>
+<body>
+    <header>
+        <div class="headerProfile">
+            <img src="./assets/img/proPic.webp" alt="profile picture">
+        </div>
+        <div class="headerDetails">
+            <h1>Md. Fahim Muhtashim</h1>
+            <p>Head of Department</p>
+        </div>
+        <div class="headerLogout">
+            <a href="./controllers/authController.php?action=logout" class="logoutBtn">
+                <p>Logout</p>
+            </a>
+        </div>
+        <div></div>
+    </header>
+</body>
+</html>

@@ -1,0 +1,154 @@
+.announcements-container {
+    padding: 0;
+}
+
+.filter-card {
+    padding: 1.6rem 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2.4rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 20rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1.6rem;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+    background-color: var(--bg-card);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 1.2rem;
+    margin-left: auto;
+}
+
+.announcement-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.announcement-card {
+    background-color: var(--bg-card);
+    border-radius: 0.8rem;
+    padding: 2.4rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.2s ease;
+}
+
+.announcement-card:hover {
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.05);
+}
+
+.announcement-card.pinned {
+    border-left: 0.4rem solid var(--primary);
+    background-color: #f8fafc;
+}
+
+.announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+}
+
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.announcement-title {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--text-main);
+}
+
+.pin-icon {
+    font-size: 1.6rem;
+}
+
+.announcement-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.3rem;
+}
+
+.meta-separator {
+    color: var(--border-color);
+}
+
+.badge-purple {
+    background-color: #f3e8ff;
+    color: #9333ea;
+}
+
+.announcement-body {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.announcement-body p {
+    margin: 0 0 1.2rem 0;
+}
+
+.announcement-body p:last-child {
+    margin-bottom: 0;
+}
+
+.announcement-attachments {
+    margin-top: 1.6rem;
+    padding-top: 1.6rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.attachment-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.attachment-link:hover {
+    background-color: var(--bg-card);
+    border-color: var(--primary);
+}
+
+.text-danger {
+    color: var(--danger);
+}

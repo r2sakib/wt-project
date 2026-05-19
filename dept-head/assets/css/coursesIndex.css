@@ -1,0 +1,60 @@
+.courses-container {
+    padding: 3.2rem;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.filter-card {
+    padding: 1.6rem 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2.4rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 20rem;
+}
+
+.filter-group label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 1rem 1.6rem;
+    font-size: 1.4rem;
+    color: #1e293b;
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.6rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    border-color: #3b82f6;
+    background-color: #ffffff;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 1.2rem;
+    margin-left: auto;
+}
+
+.row-attention {
+    background-color: #fffbeb !important;
+}

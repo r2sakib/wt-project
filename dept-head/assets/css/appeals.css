@@ -1,0 +1,84 @@
+.appeals-container {
+    padding: 0;
+}
+
+.filter-card {
+    padding: 1.6rem 2.4rem;
+    margin-bottom: 2.4rem;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2.4rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 20rem;
+}
+
+.filter-group label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 1rem 1.6rem;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    border-color: var(--primary);
+    background-color: var(--bg-card);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 1.2rem;
+    margin-left: auto;
+}
+
+.table-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.row-attention {
+    background-color: #fffbeb !important;
+}
+
+.badge-pending {
+    background-color: #ffedd5;
+    color: var(--warning);
+}
+
+.badge-resolved {
+    background-color: #dcfce3;
+    color: var(--success);
+}
+
+.badge-rejected {
+    background-color: #fee2e2;
+    color: var(--danger);
+}
+
+.text-success {
+    color: var(--success);
+    font-weight: 700;
+}
