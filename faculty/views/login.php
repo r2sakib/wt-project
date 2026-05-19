@@ -2,10 +2,10 @@
 
 <div class="login-card">
     <div class="role-nav-container">
-        <a href="#" class="role-link">Admin login</a>
-        <a href="index.php?action=login" class="role-link active-role">Faculty login</a>
-        <a href="#" class="role-link">Dept head login</a>
-        <a href="#" class="role-link">Student login</a>
+        <a href="/wt-project/admin/view/login.php" class="role-link">Admin login</a>
+        <a href="/wt-project/faculty/views/login.php" class="role-link active-role">Faculty login</a>
+        <a href="/wt-project/dept-head/" class="role-link">Dept head login</a>
+        <a href="/wt-project/student/view/login.php" class="role-link">Student login</a>
     </div>
 
     <h2>Faculty Sign In</h2>

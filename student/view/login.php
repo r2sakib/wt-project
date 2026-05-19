@@ -31,9 +31,9 @@ require_once("../controller/AuthController.php");
 <hr>
 <footer >
     <p>
-        <a href="#">Faculty Login</a> | 
-        <a href="#">Admin Login</a> | 
-        <a href="#">Head Login</a>
+        <a href="/wt-project/faculty/">Faculty Login</a> | 
+        <a href="/wt-project/admin/view/login.php">Admin Login</a> | 
+        <a href="/wt-project/dept-head/">Head Login</a>
     </p>
 </footer>
 

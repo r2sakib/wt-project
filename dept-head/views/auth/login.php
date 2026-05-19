@@ -56,9 +56,9 @@
             <div class="quick-access-section">
                 <p class="quick-access-title">Other Portals & Links</p>
                 <div class="quick-links-grid">
-                    <a href="#" class="portal-btn"><span>🛡️</span> Admin</a>
-                    <a href="#" class="portal-btn"><span>👨‍🏫</span> Faculty</a>
-                    <a href="#" class="portal-btn"><span>🎓</span> Student</a>
+                    <a href="/wt-project/admin/view/login.php" class="portal-btn"><span>🛡️</span> Admin</a>
+                    <a href="/wt-project/faculty/" class="portal-btn"><span>👨‍🏫</span> Faculty</a>
+                    <a href="/wt-project/student/view/login.php" class="portal-btn"><span>🎓</span> Student</a>
                 </div>
             </div>
         </div>
@@ -77,3 +77,4 @@
 </body>
 
 </html>
+        const togglePassword = document.getElementById('togglePa
