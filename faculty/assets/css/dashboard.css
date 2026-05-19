@@ -1,0 +1,9 @@
+.profile-layout { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; }
+.avatar-card { flex: 1; max-width: 280px; text-align: center; }
+.avatar-image { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 1px solid #cbd5e1; background: #f8fafc; }
+.meta-list { text-align: left; font-size: 13px; border-top: 1px solid #f1f5f9; padding-top: 10px; margin-top: 15px; }
+.form-card { flex: 2.5; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+.form-row label { font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px; }
+.form-row input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; }
+.deadline-badge { background: #fee2e2; color: #991b1b; padding: 6px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; }

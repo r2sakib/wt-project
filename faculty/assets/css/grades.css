@@ -1,0 +1,6 @@
+.grade-info { font-size: 13px; color: #475569; margin-top: -10px; margin-bottom: 15px; }
+.grade-table input[type="number"] { width: 70px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; text-align: center; }
+.total-cell { font-weight: bold; color: #0f172a; }
+.letter-cell { font-weight: bold; color: #1e3a8a; font-size: 15px; }
+.status-draft { color: #475569; font-weight: 600; }
+.status-locked { color: green; font-weight: 600; }
